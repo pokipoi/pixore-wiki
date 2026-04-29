@@ -3,9 +3,13 @@ import type {Config} from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 
 const config: Config = {
-  title: 'Pixore Wiki',
-  tagline: 'All-in-One Image Workstation — Documentation',
+  title: 'Pixore',
+  tagline: 'All-in-One Image Workstation — Visual Workflow Engine',
   favicon: 'img/favicon.ico',
+  // Global metadata
+  headTags: [
+    { tagName: 'meta', attributes: { property: 'og:image', content: 'img/hero-crystal.png' } },
+  ],
 
   future: {
     v4: true,
@@ -54,10 +58,11 @@ const config: Config = {
   ],
 
   themeConfig: {
-    image: 'img/pixore-social-card.png',
+    image: 'img/hero-crystal.png',
     colorMode: {
       defaultMode: 'dark',
-      respectPrefersColorScheme: true,
+      disableSwitch: false,
+      respectPrefersColorScheme: false,
     },
     navbar: {
       title: 'Pixore',
