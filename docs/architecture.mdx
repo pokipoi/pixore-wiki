@@ -1,0 +1,123 @@
+---
+sidebar_position: 3
+---
+
+# Architecture
+
+Pixore is built on a **layered architecture** that cleanly separates the host application from the node ecosystem.
+
+## Layer Overview
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│                         UI Layer                            │
+│              PyQt5 + PyQt-Fluent-Widgets                    │
+│   Home · Resize · Drag · Compression · Bitdepth · Scissors  │
+│        Renamer · Workflows · Settings · Dialogs             │
+├─────────────────────────────────────────────────────────────┤
+│                    Application Services                     │
+│  Trigger Manager · Signal Bus · Config · Theme Manager      │
+│   Process Pool · Async Image Loader · Cache Manager         │
+├─────────────────────────────────────────────────────────────┤
+│                     Workflow Engine                         │
+│   Topological Scheduler · Execution Context · Throttling    │
+├─────────────────────────────────────────────────────────────┤
+│                       Node Loader                           │
+│      Manifest Parsing · Dependency Resolver · Marketplace   │
+├─────────────────────────────────────────────────────────────┤
+│                       Node Library                          │
+│   Built-in Nodes · Community Nodes · Sponsor Pro Nodes      │
+├─────────────────────────────────────────────────────────────┤
+│                     External Tools                          │
+│       MozJPEG · Guetzli · pngquant · ImageMagick            │
+└─────────────────────────────────────────────────────────────┘
+```
+
+## UI Layer
+
+The topmost layer handles all user interaction:
+
+- **PyQt5** provides the native windowing and widget system
+- **PyQt-Fluent-Widgets** gives the modern Fluent Design look
+- **QFramelessWindow** enables custom window chrome with always-on-top support
+- Each module is a self-contained UI component loaded into the navigation stack
+
+## Application Services
+
+Cross-cutting concerns that power the entire application:
+
+| Service | Role |
+|---------|------|
+| **Trigger Manager** | Watches file-system events and schedules workflow execution |
+| **Signal Bus** | Decoupled inter-module communication via Qt signals |
+| **Config Manager** | Persistent settings (theme, paths, GPU, defaults) |
+| **Theme Manager** | Light/dark theme switching with system preference detection |
+| **Process Pool** | Multi-process task execution with progress tracking and cancellation |
+| **Async Image Loader** | Non-blocking thumbnail generation for table and grid views |
+| **Cache Manager** | LRU caching for thumbnails, node outputs, and model results |
+
+## Workflow Engine
+
+The core execution system:
+
+### Topological Scheduler
+
+Nodes form a **directed acyclic graph (DAG)**. The scheduler:
+1. Computes a topological ordering
+2. Identifies parallel-ready nodes at each level
+3. Dispatches them across the process pool
+4. Tracks dependencies and feeds outputs to downstream nodes
+
+### Execution Context
+
+A `dict`-based key-value store shared across all nodes in a workflow. Nodes can:
+- **Write** intermediate results: `ctx["preview_path"] = "/tmp/thumb.png"`
+- **Read** upstream results: `data = ctx.get("image_data")`
+- Values persist for the lifetime of a single workflow run
+
+### Throttling
+
+For batch processing large file sets:
+- Configurable **chunk size** (e.g., 10 files at a time)
+- Configurable **concurrency** (how many chunks to process in parallel)
+- Auto-batches input files to prevent memory overflow
+
+## Node Loader
+
+Discovers, validates, and resolves nodes:
+
+1. **Discovery** — Scans `nodes_library/` and installed marketplace directories
+2. **Manifest Parsing** — Validates `manifest.json` for required fields
+3. **Dependency Resolution** — Checks Python imports and external tool availability
+4. **Registration** — Adds valid nodes to the type registry for use in workflows
+
+## Node Library
+
+Three tiers of nodes:
+
+| Tier | Location | Description |
+|------|----------|-------------|
+| **Built-in** | `nodes_library/` | Core nodes shipped with Pixore |
+| **Community** | Marketplace install | User-contributed nodes from the community index |
+| **Pro** | Sponsor access | Advanced AI nodes and professional templates for sponsors |
+
+## External Tools
+
+Pixore bundles or integrates:
+
+- **MozJPEG** — Google's JPEG encoder optimized for smallest size
+- **Guetzli** — Perceptual JPEG optimizer (slower, excellent quality)
+- **pngquant** — PNG compression with quality-targeted color reduction
+- **ImageMagick** — Swiss-army knife for format conversion and batch operations
+
+## Tech Stack
+
+| Layer | Technologies |
+|-------|-------------|
+| **GUI** | PyQt5 · PyQt-Fluent-Widgets · QFramelessWindow |
+| **Image Processing** | Pillow · NumPy · OpenCV · SciPy · Shapely |
+| **AI** | OpenAI SDK · rembg · Custom multi-modal integration |
+| **Compression** | MozJPEG · Guetzli · pngquant · ImageMagick |
+| **Workflow Engine** | Custom topological scheduler with execution context |
+| **GPU Acceleration** | PyOpenCL · CuPy (optional) |
+| **System** | pywin32 (Windows) · Send2Trash · QFileSystemWatcher |

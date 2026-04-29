@@ -1,0 +1,178 @@
+---
+sidebar_position: 2
+---
+
+# Manifest Specification
+
+The `manifest.json` file describes your node's metadata, interface, and behavior. This page is the complete reference.
+
+## Required Fields
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `name` | string | Display name shown in the node palette |
+| `category` | string | Category path (use `/` for nesting, e.g. `Image/Filters`) |
+| `description` | string | Short description shown in tooltip and marketplace |
+| `version` | string | Semantic version (e.g. `1.0.0`) |
+| `author` | string | Your name or GitHub handle |
+| `inputs` | object | Input port definitions |
+| `outputs` | object | Output port definitions |
+
+## Input Port Specification
+
+Each input port is an object with:
+
+```json
+{
+  "inputs": {
+    "port_name": {
+      "type": "IMAGE",
+      "label": "Display Label",
+      "default": null,
+      "tooltip": "Optional tooltip text",
+      "required": true,
+      "options": {}
+    }
+  }
+}
+```
+
+### Type-Specific Options
+
+**INT / FLOAT:**
+```json
+{
+  "type": "INT",
+  "label": "Width",
+  "options": {
+    "default": 512,
+    "min": 1,
+    "max": 4096,
+    "step": 1
+  }
+}
+```
+
+**STRING:**
+```json
+{
+  "type": "STRING",
+  "label": "Prefix",
+  "options": {
+    "default": "img_",
+    "multiline": false,
+    "placeholder": "Enter prefix..."
+  }
+}
+```
+
+**BOOLEAN:**
+```json
+{
+  "type": "BOOLEAN",
+  "label": "Overwrite",
+  "options": {
+    "default": false
+  }
+}
+```
+
+**SELECT (dropdown):**
+```json
+{
+  "type": "STRING",
+  "label": "Format",
+  "options": {
+    "default": "png",
+    "choices": ["png", "jpg", "webp", "tiff"]
+  }
+}
+```
+
+## Output Port Specification
+
+```json
+{
+  "outputs": {
+    "port_name": {
+      "type": "IMAGE",
+      "label": "Output Image"
+    }
+  }
+}
+```
+
+## Optional Fields
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `icon` | string | Path to icon file relative to node folder |
+| `tags` | string[] | Search tags for marketplace discovery |
+| `dependencies` | string[] | Required pip packages |
+| `external_tools` | string[] | External binaries needed (e.g. `["ffmpeg"]`) |
+| `min_pixore_version` | string | Minimum Pixore version required |
+| `license` | string | Node license (default: MIT) |
+| `repository` | string | URL to source repository |
+| `homepage` | string | URL to documentation |
+
+## Complete Example
+
+```json
+{
+  "name": "Smart Watermark",
+  "category": "Image/Overlay",
+  "description": "Add adaptive watermarks with position and opacity control",
+  "version": "1.2.0",
+  "author": "janedoe",
+  "icon": "icon.png",
+  "tags": ["watermark", "overlay", "branding"],
+  "dependencies": ["opencv-python>=4.5"],
+  "external_tools": [],
+  "min_pixore_version": "1.0.0",
+  "license": "MIT",
+  "repository": "https://github.com/janedoe/pixore-watermark",
+  "homepage": "https://github.com/janedoe/pixore-watermark#readme",
+  "inputs": {
+    "image": {
+      "type": "IMAGE",
+      "label": "Input Image",
+      "required": true
+    },
+    "watermark": {
+      "type": "IMAGE",
+      "label": "Watermark Image",
+      "required": true
+    },
+    "position": {
+      "type": "STRING",
+      "label": "Position",
+      "required": true,
+      "options": {
+        "default": "bottom-right",
+        "choices": [
+          "top-left", "top-right",
+          "bottom-left", "bottom-right",
+          "center"
+        ]
+      }
+    },
+    "opacity": {
+      "type": "FLOAT",
+      "label": "Opacity",
+      "required": false,
+      "options": {
+        "default": 0.5,
+        "min": 0.0,
+        "max": 1.0,
+        "step": 0.05
+      }
+    }
+  },
+  "outputs": {
+    "watermarked_image": {
+      "type": "IMAGE",
+      "label": "Watermarked Image"
+    }
+  }
+}
+```

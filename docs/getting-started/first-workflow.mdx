@@ -1,0 +1,44 @@
+---
+sidebar_position: 2
+---
+
+# Your First Workflow
+
+This guide walks you through building your first automated image processing pipeline in Pixore.
+
+## Step 1: Open the Workflows Module
+
+Click **Workflows** in the left navigation panel. You'll see the workflow library — a grid of saved workflows.
+
+## Step 2: Create a New Workflow
+
+Click the **+ New Workflow** button and choose **Node Graph** from the dropdown. This opens the visual canvas.
+
+## Step 3: Add Nodes
+
+Drag nodes from the left panel onto the canvas:
+
+1. **File Input** — From the **Input** category. This node provides files to the workflow.
+2. **Image Resize** — From the **Image Processing** category. Configure width/height in its properties panel.
+3. **Save to Folder** — From the **Output** category. Set your output directory.
+
+## Step 4: Connect Nodes
+
+Click the output port (right side) of **File Input** and drag a connection to the input port (left side) of **Image Resize**. Then connect **Image Resize** to **Save to Folder**.
+
+## Step 5: Configure
+
+Select each node and adjust its properties in the right panel:
+- **File Input**: Set allowed extensions (`.png,.jpg,.webp`)
+- **Image Resize**: Set target width to `512`, keep aspect ratio
+- **Save to Folder**: Set output path to a folder on your disk
+
+## Step 6: Run
+
+Click the **▶ Run** button in the toolbar. Drop your image files into the prompt, or configure a **Trigger** for full automation.
+
+## Next Steps
+
+- Explore the **[Node Marketplace](https://github.com/pokipoi/pixore_node)** for more nodes
+- Learn about **[Trigger Automation](/docs/advanced/triggers)** for auto-processing
+- Read the **[Workflows Module Guide](/docs/modules/workflows)** for advanced features

@@ -1,0 +1,112 @@
+---
+sidebar_position: 7
+---
+
+# Workflows Module
+
+The flagship feature: a **full node-based visual programming environment** for image processing automation.
+
+## Workflow Types
+
+### Pipeline Mode
+A linear, sequential flow for simple automation.
+
+```
+[File Input] → [Resize] → [Compress] → [Save]
+```
+
+Best for straightforward, step-by-step processing with no branching.
+
+### Node Graph Mode
+A visual canvas with **branching, joining, and topological execution**.
+
+```
+              ┌→ [Resize 512] ─┐
+[File Input] ─┤                 ├→ [Save]
+              └→ [Resize 1024] ┘
+```
+
+The engine computes dependencies and executes independent branches in parallel.
+
+## Canvas Features
+
+### Infinite Canvas
+Zoom in/out with mouse wheel. Pan by middle-click dragging. No boundaries — organize nodes however you like.
+
+### Grid Snap
+Nodes snap to an invisible grid for clean alignment. Toggle with `Ctrl+G`.
+
+### Smart Routing
+Connections auto-route around nodes with orthogonal bezier curves. Manual control points available when needed.
+
+### Minimap
+A small overview in the corner shows your entire graph. Click to jump to any area.
+
+## Execution
+
+### Real-time Progress
+Each node shows its execution status:
+- ⏳ **Pending** — Waiting for upstream nodes
+- 🔄 **Running** — Currently processing
+- ✅ **Done** — Completed successfully
+- ❌ **Error** — Failed (click to see error log)
+
+### Log Streaming
+Live log output in the execution panel. Filter by node or log level.
+
+### Cancel Support
+Stop execution at any time. Already-processed files are preserved.
+
+## Node Marketplace
+
+Browse, install, update, and rate community nodes from the in-app store.
+
+- **Browse** — Categorized listing with search
+- **Install** — One-click download and registration
+- **Update** — Check for updates to installed nodes
+- **Rate** — Star ratings and reviews
+- **Configurable Index** — Point to custom remote indexes
+
+## AI Workflow Generation
+
+Describe a workflow in natural language:
+
+> "Resize all PNG files to 512x512, compress them with pngquant at quality 80, and save to the output folder"
+
+The AI generates the complete node graph automatically.
+
+## Triggers
+
+File-system watchers that launch workflows automatically:
+
+| Event | Trigger |
+|-------|---------|
+| **New File** | File created in watched folder |
+| **Modified** | Existing file changed |
+| **Deleted** | File removed |
+
+Combine with **throttling** for batch processing large file sets.
+
+## Workflow Library
+
+- **Save** — JSON-based workflow files
+- **Organize** — Folders, tags, and favorites
+- **Search** — Full-text search across workflow names and descriptions
+- **Import/Export** — Share workflows with the community
+
+## Code View
+
+Inspect the generated execution code for any workflow. Useful for debugging, learning how nodes work, or extracting logic for use outside Pixore.
+
+## Keyboard Shortcuts
+
+| Shortcut | Action |
+|----------|--------|
+| `Space + Drag` | Pan canvas |
+| `Ctrl+Z` / `Ctrl+Shift+Z` | Undo / Redo |
+| `Ctrl+G` | Toggle grid snap |
+| `Delete` | Remove selected nodes |
+| `Ctrl+A` | Select all |
+| `F` | Fit view to all nodes |
+| `Ctrl+S` | Save workflow |
+| `F5` | Run workflow |

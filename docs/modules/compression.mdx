@@ -1,0 +1,63 @@
+---
+sidebar_position: 3
+---
+
+# Compression Module
+
+A multi-engine image compressor that **automatically picks the right tool** for each format.
+
+## Supported Engines
+
+### PNG Compression — pngquant
+Quality-targeted lossy compression (10–100 scale). Reduces color palette while maintaining visual quality.
+
+- **Quality range**: 10 (smallest) to 100 (lossless fallback)
+- **Auto-fallback**: Falls back to lossless if quality target can't be met
+
+### JPEG Compression — MozJPEG
+Google's production JPEG encoder, optimized for smallest file size at a given quality level.
+
+- **Quality range**: 1–100
+- **Best for**: Web images where every byte counts
+- **Speed**: Fast, suitable for large batches
+
+### JPEG Compression — Guetzli
+Perceptual quality optimization that produces excellent results, but is significantly slower.
+
+- **Quality range**: 84–110
+- **Best for**: Final delivery assets where quality is paramount
+- **Speed**: Slow (minutes per image), not recommended for large batches
+
+### Auto Mode
+Specify a **maximum file size in MB**. Pixore searches for the highest quality setting that fits under the budget.
+
+```
+Target: 500 KB
+→ Pixore tries quality 90 → 620 KB ✗
+→ Pixore tries quality 80 → 480 KB ✓
+→ Result: quality 80 at 480 KB
+```
+
+### Format-Specific Pipelines
+
+| Format | Engine | Options |
+|--------|--------|---------|
+| PNG | pngquant | Quality 10-100 |
+| JPEG | MozJPEG / Guetzli | Quality, progressive, optimize |
+| WebP | PIL | Quality, lossless mode, method |
+| TIFF | PIL | Compression type, predictor |
+
+## Output Options
+
+- **In-place** — Overwrites original files (use with caution)
+- **Output Folder** — Saves to a separate directory, preserving original files
+
+## Usage
+
+1. Open the **Compression** module
+2. Select compression engine per format
+3. Drag files in or click **Add Files**
+4. Choose output mode (in-place or folder)
+5. Click **Compress**
+
+For **Auto Mode**, set the target file size before starting.

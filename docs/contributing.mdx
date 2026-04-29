@@ -1,0 +1,91 @@
+---
+sidebar_position: 5
+---
+
+# Contributing
+
+Contributions are warmly welcomed! Whether you're reporting a bug, proposing a feature, or submitting code, this guide will help you get started.
+
+## Code of Conduct
+
+All contributors are expected to follow our community guidelines. Be respectful, constructive, and welcoming.
+
+## Ways to Contribute
+
+### Report Bugs
+Open an issue with the `bug` label. Include:
+- Pixore version and OS
+- Steps to reproduce
+- Expected vs actual behavior
+- Screenshots if applicable
+- Error logs (from `logs/` directory)
+
+### Propose Features
+Open an issue with the `enhancement` label. Describe:
+- The problem you're solving
+- Your proposed solution
+- Alternative approaches considered
+- Any relevant examples from other tools
+
+### Submit Code
+
+1. Fork the [repository](https://github.com/pokipoi/pixore)
+2. Create a feature branch: `git checkout -b feature/my-feature`
+3. Make your changes
+4. Run tests: `python -m pytest test/`
+5. Commit with clear messages
+6. Push and open a Pull Request against `main`
+
+### Submit Nodes
+See the **[Publishing to Marketplace](/docs/node-development/marketplace)** guide.
+
+### Improve Documentation
+The wiki source is at [Pixore-wiki](https://github.com/pokipoi/pixore-wiki). PRs for docs are just as valuable as code.
+
+## Development Setup
+
+```bash
+git clone https://github.com/pokipoi/pixore.git
+cd pixore
+pip install -e ".[dev]"
+pre-commit install
+```
+
+## Project Structure
+
+```
+pixore/
+├── main.py              # Entry point
+├── common/              # Shared utilities
+├── core/                # Workflow engine, node loader
+├── ui/                  # All UI modules
+├── processors/          # Image processing backends
+├── nodes_library/       # Built-in nodes
+├── models/              # AI model integration
+├── helpers/             # Helper functions
+├── resource/            # Static assets, icons, themes
+├── test/                # Test suite
+└── utils/               # Miscellaneous utilities
+```
+
+## Code Style
+
+- Follow PEP 8
+- Use type hints where practical
+- Document public functions with docstrings
+- Keep methods focused and short
+- Write tests for new functionality
+
+## Pull Request Checklist
+
+- [ ] Code follows project style
+- [ ] Tests pass (`python -m pytest test/`)
+- [ ] New features include tests
+- [ ] Documentation updated if needed
+- [ ] PR description explains what and why
+- [ ] No unrelated changes mixed in
+
+## Getting Help
+
+- **Discussions**: [GitHub Discussions](https://github.com/pokipoi/pixore/discussions)
+- **Issues**: [GitHub Issues](https://github.com/pokipoi/pixore/issues)

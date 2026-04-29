@@ -1,0 +1,94 @@
+---
+sidebar_position: 3
+---
+
+# CLI Integration
+
+Pixore can be driven from the command line for scripting and CI/CD integration.
+
+## CLI Workflow Runner
+
+Execute saved workflows without opening the GUI:
+
+```bash
+python main.py --run-workflow my_workflow.json --input ./images/ --output ./processed/
+```
+
+### Options
+
+| Flag | Description |
+|------|-------------|
+| `--run-workflow <path>` | Path to a saved workflow `.json` file |
+| `--input <path>` | Input file or folder |
+| `--output <path>` | Output directory |
+| `--ctx <key=value>` | Set execution context values (repeatable) |
+
+### Examples
+
+```bash
+# Basic batch resize
+python main.py --run-workflow resize_512.json --input ./photos/ --output ./thumbnails/
+
+# With context variables
+python main.py --run-workflow compress.json --input ./assets/ --output ./dist/ \
+  --ctx quality=85 --ctx format=jpg
+
+# Process a single file
+python main.py --run-workflow watermark.json --input photo.png --output ./branded/
+```
+
+## Headless Mode
+
+Run without opening the GUI window:
+
+```bash
+python main.py --headless --run-workflow my_workflow.json --input ./images/
+```
+
+Useful for server-side processing and CI/CD pipelines.
+
+## Exit Codes
+
+| Code | Meaning |
+|------|---------|
+| `0` | All files processed successfully |
+| `1` | General error |
+| `2` | Workflow file not found |
+| `3` | Input path not found |
+| `4` | Partial failure (some files had errors) |
+
+## Programmatic Integration
+
+Pixore's core engine can be imported as a Python module:
+
+```python
+from core.workflow_engine import WorkflowEngine
+from core.node_loader import NodeLoader
+
+# Load available nodes
+loader = NodeLoader()
+nodes = loader.load_all()
+
+# Create engine
+engine = WorkflowEngine(nodes)
+
+# Load and run a workflow
+workflow = engine.load_workflow("my_workflow.json")
+engine.set_input_files(["/path/to/images/"])
+
+for progress in engine.run():
+    print(f"Progress: {progress.ratio:.1%} - {progress.message}")
+
+print(f"Results: {engine.get_results()}")
+```
+
+## Shell Integration (Windows)
+
+Register Pixore in the Windows context menu for right-click processing:
+
+```powershell
+# Run once to register shell extension
+python main.py --register-shell
+```
+
+After registration, right-click any image file and select **Process with Pixore**.

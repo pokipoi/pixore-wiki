@@ -1,30 +1,150 @@
 /**
- * Any CSS included here will be global. The classic template
- * bundles Infima by default. Infima is a CSS framework designed to
- * work well for content-centric websites.
+ * Pixore Wiki — Custom Theme
+ * A sleek, modern theme inspired by image editing tools
  */
 
 /* You can override the default Infima variables here. */
 :root {
-  --ifm-color-primary: #2e8555;
-  --ifm-color-primary-dark: #29784c;
-  --ifm-color-primary-darker: #277148;
-  --ifm-color-primary-darkest: #205d3b;
-  --ifm-color-primary-light: #33925d;
-  --ifm-color-primary-lighter: #359962;
-  --ifm-color-primary-lightest: #3cad6e;
+  --ifm-color-primary: #6366f1;
+  --ifm-color-primary-dark: #4f46e5;
+  --ifm-color-primary-darker: #4338ca;
+  --ifm-color-primary-darkest: #3730a3;
+  --ifm-color-primary-light: #818cf8;
+  --ifm-color-primary-lighter: #93c5fd;
+  --ifm-color-primary-lightest: #bfdbfe;
   --ifm-code-font-size: 95%;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+  --ifm-font-family-base: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --ifm-heading-font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --ifm-font-weight-semibold: 600;
+  --ifm-h1-font-size: 2.25rem;
+  --ifm-h2-font-size: 1.625rem;
+  --ifm-h3-font-size: 1.25rem;
 }
 
-/* For readability concerns, you should choose a lighter palette in dark mode. */
+/* Dark mode */
 [data-theme='dark'] {
-  --ifm-color-primary: #25c2a0;
-  --ifm-color-primary-dark: #21af90;
-  --ifm-color-primary-darker: #1fa588;
-  --ifm-color-primary-darkest: #1a8870;
-  --ifm-color-primary-light: #29d5b0;
-  --ifm-color-primary-lighter: #32d8b4;
-  --ifm-color-primary-lightest: #4fddbf;
+  --ifm-color-primary: #818cf8;
+  --ifm-color-primary-dark: #6366f1;
+  --ifm-color-primary-darker: #4f46e5;
+  --ifm-color-primary-darkest: #4338ca;
+  --ifm-color-primary-light: #93c5fd;
+  --ifm-color-primary-lighter: #bfdbfe;
+  --ifm-color-primary-lightest: #dbeafe;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+  --ifm-background-color: #0f0f13;
+  --ifm-background-surface-color: #1a1a23;
+  --ifm-navbar-background-color: rgba(15, 15, 19, 0.8);
+  --ifm-footer-background-color: #0a0a0e;
+}
+
+/* Navbar glass effect */
+.navbar {
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(99, 102, 241, 0.1);
+}
+
+/* Code blocks */
+pre {
+  border-radius: 8px;
+  border: 1px solid rgba(99, 102, 241, 0.15);
+}
+
+code {
+  border-radius: 4px;
+  padding: 0.15em 0.4em;
+}
+
+/* Tables */
+table {
+  display: table;
+  width: 100%;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+table th {
+  background: rgba(99, 102, 241, 0.1);
+  font-weight: 600;
+}
+
+table tr:nth-child(even) {
+  background: rgba(99, 102, 241, 0.03);
+}
+
+/* Blockquotes */
+blockquote {
+  border-left: 3px solid var(--ifm-color-primary);
+  background: rgba(99, 102, 241, 0.05);
+  border-radius: 0 8px 8px 0;
+  padding: 1rem 1.25rem;
+}
+
+/* Admonitions (callouts) */
+.alert {
+  border-radius: 8px;
+  border-left-width: 4px;
+}
+
+/* Smooth transitions */
+a {
+  transition: color 0.15s ease;
+}
+
+/* Link underlines */
+.markdown a:not(.table-of-contents__link):not(.pagination-nav__link):not(.hash-link) {
+  text-decoration: underline;
+  text-decoration-color: rgba(99, 102, 241, 0.3);
+  text-underline-offset: 2px;
+}
+
+.markdown a:not(.table-of-contents__link):not(.pagination-nav__link):not(.hash-link):hover {
+  text-decoration-color: var(--ifm-color-primary);
+}
+
+/* Heading anchors */
+.markdown h1,
+.markdown h2,
+.markdown h3 {
+  scroll-margin-top: calc(var(--ifm-navbar-height) + 1rem);
+}
+
+/* Footer */
+.footer--dark {
+  --ifm-footer-background-color: #0a0a0e;
+  border-top: 1px solid rgba(99, 102, 241, 0.1);
+}
+
+/* Doc sidebar */
+.menu__link--active {
+  font-weight: 600;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(99, 102, 241, 0.3);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(99, 102, 241, 0.5);
+}
+
+/* Keyboard shortcut styling */
+kbd {
+  background: rgba(99, 102, 241, 0.1);
+  border: 1px solid rgba(99, 102, 241, 0.2);
+  border-radius: 4px;
+  padding: 0.1em 0.5em;
+  font-size: 0.85em;
+  font-family: var(--ifm-font-family-monospace);
 }

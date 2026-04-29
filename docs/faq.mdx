@@ -1,0 +1,93 @@
+---
+sidebar_position: 6
+---
+
+# FAQ
+
+## General
+
+### What is Pixore?
+Pixore is a desktop image-processing workstation with eight specialized modules and a node-based visual workflow engine. It replaces multiple single-purpose image tools.
+
+### Is Pixore free?
+Yes, completely free and open source under GPL v3.
+
+### What platforms are supported?
+Windows 10+ is fully supported. macOS and Linux native packages are planned.
+
+---
+
+## Installation
+
+### "Missing DLL" errors on Windows?
+Install the [Visual C++ Redistributable](https://aka.ms/vs/17/release/vc_redist.x64.exe).
+
+### "No module named X" errors?
+Run `pip install -r requirements.txt` again. On first launch, `envinit.py` auto-installs missing dependencies.
+
+### Can I use Pixore without Python installed?
+Yes, download the pre-built installer from [Releases](https://github.com/pokipoi/pixore/releases).
+
+---
+
+## Modules
+
+### What's the difference between Resize and PIL Resize in Workflows?
+**Resize** uses Pixore's optimized pipeline with smart pre-trim and parallel processing. **PIL Resize** is a thin wrapper around Pillow — simpler but less feature-rich.
+
+### Can I compress images losslessly?
+- **PNG**: Set pngquant quality to 100 for lossless mode
+- **JPEG**: Use MozJPEG at quality 100 (still technically lossy, but visually lossless)
+- **WebP**: Enable lossless mode in compression settings
+
+### Does Scissors support transparency?
+Yes. Cut regions with transparent backgrounds export as RGBA PNGs. Enable **Always-Trim Output** to auto-crop transparent edges.
+
+### Can the AI Renamer work offline?
+Yes! Use **Ollama** or **LM Studio** with local models. No internet required.
+
+---
+
+## Workflows & Nodes
+
+### How many nodes can a workflow have?
+No hard limit. Performance depends on your hardware and node complexity. Workflows with 50+ nodes run fine on typical hardware.
+
+### Can I use Python libraries in custom nodes?
+Yes. List dependencies in `requirements.txt` and they'll be installed when your node is loaded.
+
+### Where are community nodes installed?
+They're stored in `nodes_library/community/` inside your Pixore data directory.
+
+---
+
+## Performance
+
+### Pixore is slow — what can I do?
+1. Enable GPU acceleration in Settings
+2. Increase the process count in Settings → Performance
+3. Reduce batch sizes for large image sets
+4. Close other memory-intensive applications
+
+### Does Pixore use my GPU?
+Yes, for compatible operations like resizing, dithering, and filtering. Enable in Settings → Performance → GPU Acceleration.
+
+### How much RAM do I need?
+- Basic usage: 4 GB
+- AI nodes + large batches: 8 GB minimum, 16 GB recommended
+
+---
+
+## Troubleshooting
+
+### Where are the logs?
+`logs/` directory in your Pixore installation folder. The latest log is `pixore.log`.
+
+### A workflow keeps failing — how do I debug?
+1. Enable verbose logging in Settings
+2. Use **Code View** to inspect the generated code
+3. Check each node's log output during execution
+4. Try running nodes individually to isolate the problem
+
+### How do I reset all settings?
+Delete the `config.json` file in your Pixore data directory. Pixore will recreate it with defaults on next launch.

@@ -1,0 +1,55 @@
+---
+sidebar_position: 1
+---
+
+# Resize Module
+
+A production-grade batch image resizer built on a **virtual table view** that handles thousands of files without UI lag.
+
+## Features
+
+### Presets
+Save and recall favorite resize configurations. Presets store width, height, algorithm, and aspect ratio settings for quick reuse.
+
+### Smart Pre-Trim
+Auto-trim transparent borders **before** resizing using a dedicated trim setting dialog. This ensures resized output doesn't waste pixels on empty space.
+
+### Multiple Algorithms
+
+| Algorithm | Best For |
+|-----------|----------|
+| **Lanczos** | High-quality downscaling (default) |
+| **Bicubic** | General-purpose resizing |
+| **Bilinear** | Speed over quality |
+| **Nearest** | Pixel art and retro graphics |
+
+Quality previews help you pick the right algorithm visually.
+
+### Parallel Processing
+Multi-process pool with:
+- Real-time progress bar
+- Cancellation support at any time
+- Extension-aware file filtering (only accepts supported image formats on drag)
+
+### Preview Modes
+Toggle between **table view** (details) and **grid view** (thumbnails) for the best workflow.
+
+### State Persistence
+Resumes pending tasks across application restarts — no lost work.
+
+## Usage
+
+1. Open the **Resize** module from the navigation panel
+2. Drag images into the table or click **Add Files**
+3. Set target dimensions and algorithm
+4. Optionally enable **Smart Pre-Trim** from the trim settings
+5. Click **Process** to start batch resizing
+
+## Keyboard Shortcuts
+
+| Shortcut | Action |
+|----------|--------|
+| `Ctrl+O` | Add files |
+| `Ctrl+Shift+O` | Add folder |
+| `Ctrl+Enter` | Start processing |
+| `Escape` | Cancel processing |

@@ -1,0 +1,74 @@
+---
+sidebar_position: 1
+---
+
+# Trigger Automation
+
+Automate workflows by watching the file system for changes.
+
+## How Triggers Work
+
+A trigger monitors a specified folder and **launches a workflow** when a file event occurs. Triggers run in the background — you don't need to keep the Workflows module open.
+
+## Trigger Types
+
+### File System Watcher
+Monitors a folder for file events:
+
+| Event | Description | Use Case |
+|-------|-------------|----------|
+| **New File** | A file is created in the watched folder | Auto-process incoming downloads |
+| **Modified** | An existing file is changed | Re-process updated assets |
+| **Deleted** | A file is removed | Clean up derived files |
+
+### Scheduled Trigger
+Runs a workflow at a specific time or interval:
+
+- **Daily** at a specific time
+- **Hourly**
+- **Custom cron expression**
+
+## Setting Up a Trigger
+
+1. Open the **Workflows** module
+2. Select a saved workflow
+3. Click the **Triggers** tab
+4. Click **+ Add Trigger**
+5. Configure:
+   - **Trigger Type**: File watcher or scheduled
+   - **Watch Folder**: The folder to monitor
+   - **File Patterns**: Which files to watch (e.g. `*.png`, `*.jpg`)
+   - **Workflow**: The workflow to execute
+6. Toggle the trigger **ON**
+
+## Throttling
+
+For folders that receive many files rapidly (e.g., camera imports), enable throttling:
+
+| Setting | Description | Default |
+|---------|-------------|---------|
+| **Batch Size** | Files per execution batch | 10 |
+| **Debounce (ms)** | Wait time before processing after last event | 2000 |
+| **Max Concurrency** | Maximum parallel workflow executions | 1 |
+
+## Trigger Management
+
+- **Enable/Disable** — Toggle triggers without deleting them
+- **Edit** — Modify watch folders or linked workflows
+- **View History** — See what each trigger has processed
+- **Notifications** — Get system tray alerts on trigger events
+
+## Example: Auto-Compress Downloads
+
+1. Create a workflow: `[File Input] → [Compress] → [Save to Folder]`
+2. Add a **New File** trigger watching `~/Downloads`
+3. Set file pattern to `*.png,*.jpg`
+4. The moment you save an image to Downloads, it gets compressed automatically
+
+## Example: Asset Pipeline
+
+```
+Camera SD Card → [New File Trigger] → Resize Workflow → Output Folder → [New File Trigger] → Compress Workflow → Final Assets
+```
+
+Chain multiple triggers for complex pipelines — each trigger launches its workflow independently.

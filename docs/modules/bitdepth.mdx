@@ -1,0 +1,61 @@
+---
+sidebar_position: 4
+---
+
+# Bit Depth Module
+
+**Per-channel bit allocation** for retro game art, asset compression, and palette work.
+
+## What Is Bit Depth?
+
+Bit depth controls how many colors each channel can represent:
+
+```
+Standard RGBA: 8-8-8-8 = 32 bits/pixel (16.7M colors)
+Retro-style:   5-6-5-1 = 17 bits/pixel (2048 colors + 1-bit alpha)
+```
+
+Lower bit depths produce smaller files and a characteristic "retro" look.
+
+## Features
+
+### Per-Channel Control
+Independent bit depth sliders for **R**, **G**, **B**, and **A** channels.
+
+Example configurations:
+
+| Style | R | G | B | A | Total Bits |
+|-------|---|---|---|---|------------|
+| True Color | 8 | 8 | 8 | 8 | 32 |
+| SNES-style | 5 | 5 | 5 | 1 | 16 |
+| GBA-style | 5 | 5 | 5 | 0 | 15 |
+| Game Boy | 1 | 1 | 1 | 1 | 4 |
+
+### Live Total Calculation
+The total bits per pixel updates in real time as you adjust sliders.
+
+### Dithering Modes
+
+| Mode | Description |
+|------|-------------|
+| **None** | Direct truncation — sharp banding |
+| **Floyd-Steinberg** | Error diffusion — smooth gradients at low bit depths |
+| **Ordered** | Bayer matrix dithering — classic retro game look |
+
+### Custom Palettes
+Save and load color palette presets. Useful for maintaining consistent color schemes across a project.
+
+### Format-Aware Save
+Automatically honors the bit-depth metadata of each output format:
+- **PNG**: Supports any bit depth via palette mode
+- **BMP**: Native support for 1/4/8/16/24/32-bit
+- **TGA**: 16/24/32-bit
+
+## Usage
+
+1. Open the **Bit Depth** module
+2. Drag images in
+3. Adjust R, G, B, A sliders
+4. Choose a dithering mode
+5. Select output format
+6. Click **Process**

@@ -1,0 +1,99 @@
+---
+sidebar_position: 4
+---
+
+# Publishing to Marketplace
+
+Share your nodes with the Pixore community through the built-in marketplace.
+
+## Prerequisites
+
+1. Your node works correctly in Pixore
+2. You have a GitHub repository for your node
+3. You've tested on Windows (and ideally macOS/Linux)
+
+## Step 1: Prepare Your Node Repository
+
+Your repo should look like this:
+
+```
+pixore-node-watermark/
+├── manifest.json
+├── main.py
+├── icon.png         # 128×128 PNG
+├── README.md        # Documentation shown in marketplace
+├── LICENSE
+└── requirements.txt # If extra dependencies needed
+```
+
+## Step 2: Add Marketplace Metadata
+
+Add these fields to your `manifest.json`:
+
+```json
+{
+  "name": "Smart Watermark",
+  "category": "Image/Overlay",
+  "description": "...",
+  "version": "1.0.0",
+  "author": "your-github-username",
+  "tags": ["watermark", "overlay", "branding"],
+  "license": "MIT",
+  "repository": "https://github.com/yourname/pixore-node-watermark",
+  "min_pixore_version": "1.0.0",
+  ...
+}
+```
+
+## Step 3: Create a GitHub Release
+
+1. Tag your release: `git tag v1.0.0`
+2. Push the tag: `git push --tags`
+3. Create a GitHub Release from the tag
+4. Attach a `.zip` of your node folder
+
+## Step 4: Submit to the Node Index
+
+The marketplace reads from a community-maintained index at [pixore_node](https://github.com/pokipoi/pixore_node).
+
+1. Fork the [pixore_node](https://github.com/pokipoi/pixore_node) repository
+2. Add your node entry to `index.json`:
+
+```json
+{
+  "nodes": [
+    {
+      "id": "smart-watermark",
+      "name": "Smart Watermark",
+      "author": "yourname",
+      "description": "Add adaptive watermarks with position and opacity control",
+      "category": "Image/Overlay",
+      "version": "1.0.0",
+      "repository": "https://github.com/yourname/pixore-node-watermark",
+      "download_url": "https://github.com/yourname/pixore-node-watermark/releases/latest/download/node.zip",
+      "min_pixore_version": "1.0.0",
+      "tags": ["watermark", "overlay"],
+      "license": "MIT"
+    }
+  ]
+}
+```
+
+3. Open a Pull Request
+4. Once merged, your node appears in the in-app marketplace
+
+## Updating Your Node
+
+1. Bump the version in `manifest.json`
+2. Create a new GitHub Release
+3. Update the version in `index.json` via a PR to `pixore_node`
+
+Users will see an **Update Available** badge next to your node in the marketplace.
+
+## Best Practices
+
+- **Write a good README** — Include screenshots, usage examples, and a changelog
+- **Specify dependencies** — List all pip packages in `requirements.txt`
+- **Test before publishing** — Verify on a clean Pixore installation
+- **Version semantically** — Follow [SemVer](https://semver.org/) (`MAJOR.MINOR.PATCH`)
+- **Respond to issues** — Users will file bugs and feature requests on your repo

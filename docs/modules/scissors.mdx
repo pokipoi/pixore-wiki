@@ -1,0 +1,64 @@
+---
+sidebar_position: 5
+---
+
+# Scissors Module
+
+A Photoshop-inspired canvas for **precise image cutting** and asset extraction.
+
+## Drawing Tools
+
+| Tool | Shortcut | Description |
+|------|----------|-------------|
+| **Selector** | `V` | Move and resize cut regions |
+| **Pen** | `B` | Freeform path drawing |
+| **Line** | `L` | Straight line cuts |
+| **Rectangle** | `M` | Rectangular region selection |
+| **Ellipse** | `O` | Elliptical region selection |
+| **Eraser** | `E` | Remove cut boundaries |
+
+## Cutting Modes
+
+### Manual Cut
+Use drawing tools to define cut regions, then export each region as a separate image file.
+
+### Auto Cut
+Detects **continuous color blocks** and slices the image automatically.
+
+- `Ctrl+Shift+A` — Auto-cut the current image
+- Works best on images with distinct, separated elements on a uniform background
+
+### Batch Auto Cut
+Apply auto-cut to **entire folders** with a progress dialog.
+
+- `Ctrl+Alt+A` — Open batch auto-cut dialog
+- Select input folder → choose output folder → let Pixore process all images
+
+## Project Files (`.cut`)
+
+Save your cutting sessions as `.cut` project files:
+
+- Preserves all cut region annotations
+- Stores tool settings and preferences
+- Reopen anytime to continue work
+
+## Export Options
+
+- **Always-Trim Output** — Auto-trims transparent edges on export
+- **Format Selection** — Export as PNG, JPEG, WebP, or TIFF
+- **Smart Export** — `Ctrl+Shift+E` for one-key export of all cut regions
+
+## Tabbed Workspace
+
+Open multiple images simultaneously in tabs. Each tab maintains its own cut regions and tool state independently.
+
+## Keyboard Shortcuts
+
+| Shortcut | Action |
+|----------|--------|
+| `Ctrl+Shift+A` | Auto-cut current image |
+| `Ctrl+Alt+A` | Batch auto-cut folder |
+| `Ctrl+Shift+E` | Export all cut regions |
+| `Ctrl+S` | Save `.cut` project |
+| `Ctrl+O` | Open image |
+| `Delete` | Remove selected cut region |

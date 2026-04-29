@@ -1,0 +1,72 @@
+---
+sidebar_position: 1
+---
+
+# Installation
+
+## Prerequisites
+
+- **Python 3.9** or later
+- **Windows 10+**, **macOS 11+**, or modern Linux
+- **4 GB RAM** minimum (8 GB recommended for AI nodes and large batches)
+- Optional: GPU with OpenCL support for accelerated processing
+
+## Quick Install
+
+```bash
+# Clone the repository
+git clone https://github.com/pokipoi/pixore.git
+cd pixore
+
+# Install dependencies
+pip install -r requirements.txt
+
+# Launch the application
+python main.py
+```
+
+On first launch, missing dependencies are automatically installed via `envinit.py`.
+
+## Pre-built Binaries
+
+Download the latest installer from the [Releases](https://github.com/pokipoi/pixore/releases) page.
+
+| Platform | Download | Status |
+|----------|----------|--------|
+| Windows  | `pixore-setup-x64.exe` | ✅ Available |
+| macOS    | `pixore.dmg` | 🚧 Planned |
+| Linux    | `pixore.AppImage` | 🚧 Planned |
+
+## Development Setup
+
+If you plan to contribute or develop nodes:
+
+```bash
+# Clone with submodules (if any)
+git clone --recurse-submodules https://github.com/pokipoi/pixore.git
+
+# Install in editable mode with dev dependencies
+pip install -e ".[dev]"
+
+# Run with verbose logging
+python main.py --debug
+```
+
+## Verification
+
+After launching, you should see the **Home** module with the Pixore logo. Try opening each module from the left navigation panel to verify everything loads correctly.
+
+## Troubleshooting
+
+### Missing DLLs on Windows
+Install the [Visual C++ Redistributable](https://aka.ms/vs/17/release/vc_redist.x64.exe).
+
+### PIL / Pillow errors
+```bash
+pip uninstall pillow -y && pip install pillow
+```
+
+### Permission denied on macOS/Linux
+```bash
+chmod +x bin/* && python main.py
+```

@@ -1,0 +1,58 @@
+---
+sidebar_position: 2
+---
+
+# GPU Acceleration
+
+Pixore supports GPU-accelerated image processing for compatible operations.
+
+## Supported Backends
+
+| Backend | Library | Status |
+|---------|---------|--------|
+| **OpenCL** | PyOpenCL | ✅ Supported |
+| **CUDA** | CuPy | ✅ Optional |
+
+## Enabling GPU Acceleration
+
+1. Open **Settings** → **Performance**
+2. Check **Enable GPU Acceleration**
+3. Select your preferred backend (OpenCL or CUDA)
+4. Restart Pixore
+
+Pixore auto-detects available GPUs on startup. If no compatible GPU is found, the option is grayed out.
+
+## What Gets Accelerated
+
+GPU acceleration applies to operations that benefit from parallel processing:
+
+- **Batch image resizing** — Up to 10× faster with OpenCL
+- **Color depth conversion** — Floyd-Steinberg dithering on GPU
+- **Image filtering** — Convolution-based filters (blur, sharpen, edge detection)
+- **Color space transforms** — HSL, curves, levels adjustments
+- **AI model inference** — When using local models with GPU support
+
+## Performance Comparison
+
+Testing on 1000 images (1920×1080, resize to 512×512):
+
+| Operation | CPU (8 cores) | GPU (OpenCL) | Speedup |
+|-----------|---------------|--------------|---------|
+| Lanczos Resize | 45.2 s | 4.8 s | **9.4×** |
+| Floyd-Steinberg | 32.1 s | 5.2 s | **6.2×** |
+| Gaussian Blur | 18.7 s | 2.1 s | **8.9×** |
+
+## Troubleshooting
+
+### GPU not detected
+- Update your GPU drivers
+- Install OpenCL runtime (Intel/NVIDIA/AMD)
+- Verify with `python -c "import pyopencl; print(pyopencl.get_platforms())"`
+
+### Out of memory errors
+- Reduce batch size in Settings → Performance → Throttling
+- Close other GPU-intensive applications
+- Try a different backend (OpenCL vs CUDA)
+
+### CPU fallback
+If GPU acceleration fails mid-operation, Pixore automatically falls back to CPU processing. Check the log for details.

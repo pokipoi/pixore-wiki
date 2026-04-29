@@ -1,0 +1,70 @@
+---
+sidebar_position: 6
+---
+
+# AI Renamer Module
+
+Multi-modal AI-driven **batch file renaming** with chat history and reference texts.
+
+## How It Works
+
+The AI Renamer pairs two model types:
+
+1. **Vision Model** — Analyzes image content (what's in the picture?)
+2. **Language Model** — Generates meaningful filenames based on the visual analysis
+
+This two-stage pipeline ensures filenames actually describe what's in the image.
+
+## Features
+
+### Visual + Language Models
+Combine a vision model (CLIP, GPT-4V, etc.) with a language model for intelligent naming. Configure different model pairings per use case.
+
+### Tool Calling Mode
+Function-calling-aware mode for **structured renaming workflows**. The AI outputs structured rename data that gets applied deterministically — no regex parsing needed.
+
+### Reference Texts
+Provide naming conventions, glossaries, or style guides as context:
+- Upload a text file with your naming rules
+- Paste a glossary of approved terms
+- Include brand guidelines for consistent naming
+
+### Chat History
+- **Searchable** — Find past sessions by keyword
+- **Sortable** — By date, file count, or model used
+- **Favoritable** — Bookmark important sessions
+- **Persistent** — Stored locally, survives restarts
+
+### Custom Prompt Library
+Save reusable prompt templates and toggle them on/off per session. Examples:
+- "Name in format: project_asset-type_variant-v##"
+- "Use kebab-case, include dominant color"
+- "Prefix with date-YYYYMMDD"
+
+### Model Support
+
+| Provider | Vision Models | Language Models |
+|----------|--------------|-----------------|
+| **OpenAI** | GPT-4V, GPT-4o | GPT-4o, GPT-4-turbo |
+| **Ollama** | LLaVA, BakLLaVA | Llama 3, Mistral |
+| **LM Studio** | Local vision models | Local LLMs |
+| **OpenAI-compatible** | Any endpoint | Any endpoint |
+
+### Live File Preview
+Side-by-side image grid with rename suggestions. Review and approve changes before applying.
+
+## Usage
+
+1. Open the **Renamer** module
+2. Add files by drag-and-drop or file picker
+3. Configure your vision and language models
+4. Optionally add reference texts and prompt templates
+5. Click **Generate Names**
+6. Review suggestions in the preview grid
+7. Click **Apply** to rename files
+
+## Pro Tips
+
+- Use **Tool Calling mode** for production batch renaming — it's more reliable than free-text generation
+- Save your naming conventions as **prompt templates** for consistency across projects
+- Combine with the **Workflows** module for automated rename pipelines

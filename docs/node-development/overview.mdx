@@ -1,0 +1,154 @@
+---
+sidebar_position: 1
+---
+
+# Node Development Overview
+
+Pixore's node system is designed to be **modular and easy to extend**. Every node is a self-contained folder that can be dropped into Pixore without modifying the host application.
+
+## Node Anatomy
+
+A node is a folder with two required files:
+
+```
+my_node/
+├── manifest.json    # Metadata, inputs, outputs, UI schema
+└── main.py          # Processing logic
+```
+
+Optional files:
+
+```
+my_node/
+├── manifest.json
+├── main.py
+├── icon.png         # Node icon (128×128, displayed in the node palette)
+├── README.md        # Documentation shown in the marketplace
+└── requirements.txt # Additional pip dependencies
+```
+
+## Quick Example: Grayscale Node
+
+**manifest.json**:
+```json
+{
+  "name": "Grayscale",
+  "category": "Image Processing",
+  "description": "Convert image to grayscale",
+  "version": "1.0.0",
+  "author": "YourName",
+  "inputs": {
+    "image": {"type": "IMAGE", "label": "Input Image"}
+  },
+  "outputs": {
+    "image": {"type": "IMAGE", "label": "Grayscale Image"}
+  }
+}
+```
+
+**main.py**:
+```python
+from PIL import Image
+
+class GrayscaleNode:
+    @classmethod
+    def INPUT_TYPES(cls):
+        return {
+            "required": {"image": ("IMAGE",)},
+        }
+
+    RETURN_TYPES = ("IMAGE",)
+    RETURN_NAMES = ("image",)
+    FUNCTION = "process"
+    CATEGORY = "Image"
+
+    def process(self, image, ctx=None, payload=None):
+        return (image.convert("L"),)
+
+
+NODE_CLASS_MAPPINGS = {"grayscale": GrayscaleNode}
+```
+
+## Key Concepts
+
+### INPUT_TYPES
+
+Defines what data the node accepts. Two categories:
+
+```python
+@classmethod
+def INPUT_TYPES(cls):
+    return {
+        "required": {
+            "image": ("IMAGE",),
+            "width": ("INT", {"default": 512, "min": 1, "max": 4096}),
+        },
+        "optional": {
+            "quality": ("FLOAT", {"default": 80.0, "min": 1.0, "max": 100.0}),
+        }
+    }
+```
+
+### Data Types
+
+| Type | Python Type | Description |
+|------|------------|-------------|
+| `IMAGE` | `PIL.Image` | Pillow image object |
+| `STRING` | `str` | Text string |
+| `INT` | `int` | Integer with min/max constraints |
+| `FLOAT` | `float` | Float with min/max constraints |
+| `BOOLEAN` | `bool` | True/False toggle |
+| `FILE_PATH` | `str` | Validated file path |
+| `FOLDER_PATH` | `str` | Validated folder path |
+| `IMAGE_BATCH` | `list[PIL.Image]` | List of images for batch processing |
+| `ANY` | `any` | Pass-through of any type |
+
+### RETURN_TYPES & RETURN_NAMES
+
+Must be tuples of the same length:
+
+```python
+RETURN_TYPES = ("IMAGE", "INT")
+RETURN_NAMES = ("processed_image", "file_size")
+```
+
+### Execution Context
+
+The `ctx` parameter is a shared dictionary that persists for one workflow run:
+
+```python
+def process(self, image, ctx=None, payload=None):
+    # Store intermediate result for downstream nodes
+    ctx["dominant_color"] = self.extract_color(image)
+    return (image,)
+```
+
+### FUNCTION
+
+The method name to call. Must match a method on the class.
+
+### CATEGORY
+
+Where the node appears in the node palette. Nested categories use `/`:
+```python
+CATEGORY = "Image/Filters"
+```
+
+### NODE_CLASS_MAPPINGS
+
+A dictionary mapping node IDs to classes. The key becomes the node's unique identifier:
+```python
+NODE_CLASS_MAPPINGS = {
+    "my_custom_grayscale": GrayscaleNode,
+}
+```
+
+## Testing Locally
+
+Place your node folder in `nodes_library/` and restart Pixore. It will be auto-discovered and available in the Workflows node palette.
+
+## Next Steps
+
+- **[Manifest Specification](/docs/node-development/manifest-spec)** — Full manifest.json reference
+- **[API Reference](/docs/node-development/api-reference)** — Available utilities and helpers
+- **[Publishing to Marketplace](/docs/node-development/marketplace)** — Share your node with the community

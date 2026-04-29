@@ -1,19 +1,19 @@
-facebook:
-  label: Facebook
-  permalink: /facebook
-  description: Facebook tag description
+release:
+  label: Release
+  permalink: /release
+  description: Pixore release announcements
 
-hello:
-  label: Hello
-  permalink: /hello
-  description: Hello tag description
+tutorial:
+  label: Tutorial
+  permalink: /tutorial
+  description: Step-by-step tutorials
 
-docusaurus:
-  label: Docusaurus
-  permalink: /docusaurus
-  description: Docusaurus tag description
+node:
+  label: Node
+  permalink: /node
+  description: Node development and marketplace
 
-hola:
-  label: Hola
-  permalink: /hola
-  description: Hola tag description
+community:
+  label: Community
+  permalink: /community
+  description: Community updates and stories

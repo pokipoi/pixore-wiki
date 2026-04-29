@@ -1,0 +1,72 @@
+---
+sidebar_position: 0
+---
+
+# Home & Settings
+
+## Home Module
+
+The landing page you see on launch.
+
+### Recent Files
+A grid of recently opened or processed images. Click any thumbnail to reopen it in the relevant module.
+
+### Quick Actions
+One-click shortcuts to common tasks:
+- **Quick Compress** — Compress with last-used settings
+- **Batch Resize** — Jump to Resize module
+- **Auto-Cut** — Open folder with auto-cut preset
+
+### Animated Cover Art
+Dynamic cover art that changes based on your usage patterns and time of day.
+
+### Confetti Celebrations 🎉
+When a large batch task completes successfully, confetti rains across the home screen. A small touch of joy for a job well done.
+
+---
+
+## Settings Module
+
+Configure Pixore to match your workflow.
+
+### Appearance
+- **Theme** — Light, Dark, or follow system preference
+- **Accent Color** — Customize the Fluent UI accent
+- **Font Size** — Scale the UI text
+
+### Performance
+
+| Setting | Description |
+|---------|-------------|
+| **Max Processes** | Number of parallel workers (default: CPU cores) |
+| **GPU Acceleration** | Enable OpenCL/CuPy for compatible operations |
+| **Thumbnail Cache** | Size limit for the thumbnail LRU cache |
+| **Async Loading** | Enable non-blocking image loading |
+
+### Paths
+
+- **Default Input** — Where file pickers start
+- **Default Output** — Where processed files go
+- **Temp Directory** — Scratch space for intermediate files
+- **Cache Directory** — Thumbnail and model cache location
+
+### Workflow Defaults
+
+- **Default Workflow Type** — Pipeline or Node Graph
+- **Auto-save Interval** — How often to auto-save open workflows
+- **Log Level** — Verbosity of execution logs
+
+### External Tools
+
+Configure paths to bundled tools if auto-detection fails:
+
+- MozJPEG binary path
+- Guetzli binary path
+- pngquant binary path
+- ImageMagick path
+
+### Notifications
+
+- **System Tray** — Enable/disable tray icon
+- **Task Complete** — Show notification on task finish
+- **Error Alerts** — Show notification on errors
