@@ -9,6 +9,20 @@ const config: Config = {
   // Global metadata
   headTags: [
     { tagName: 'meta', attributes: { property: 'og:image', content: 'img/hero-crystal.png' } },
+    {
+      tagName: 'link',
+      attributes: {
+        rel: 'stylesheet',
+        href: 'https://fluent2-cdn.azureedge.net/web/styles.css',
+      },
+    },
+    {
+      tagName: 'script',
+      attributes: {
+        type: 'module',
+        src: 'https://fluent2-cdn.azureedge.net/web/bundle.js',
+      },
+    },
   ],
 
   future: {
