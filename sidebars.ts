@@ -6,7 +6,7 @@ const sidebars: SidebarsConfig = {
     {
       type: 'category',
       label: 'Getting Started',
-      link: {type: 'doc', id: 'getting-started/installation'},
+      link: {type: 'generated-index'},
       items: [
         'getting-started/installation',
         'getting-started/first-workflow',
@@ -16,7 +16,7 @@ const sidebars: SidebarsConfig = {
     {
       type: 'category',
       label: 'Modules',
-      link: {type: 'doc', id: 'modules/home-settings'},
+      link: {type: 'generated-index'},
       items: [
         'modules/home-settings',
         'modules/resize',
@@ -31,7 +31,7 @@ const sidebars: SidebarsConfig = {
     {
       type: 'category',
       label: 'Node Development',
-      link: {type: 'doc', id: 'node-development/overview'},
+      link: {type: 'generated-index'},
       items: [
         'node-development/overview',
         'node-development/manifest-spec',
