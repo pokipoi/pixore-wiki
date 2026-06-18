@@ -1,0 +1,123 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1A1714"/>
+      <stop offset="100%" stop-color="#0E0C08"/>
+    </linearGradient>
+    <linearGradient id="glow" x1="0.5" y1="0" x2="0.5" y2="1">
+      <stop offset="0%" stop-color="#9BD301" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#9BD301" stop-opacity="0"/>
+    </linearGradient>
+    <filter id="sh" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="#000" flood-opacity="0.35"/>
+    </filter>
+    <filter id="g" x="-100%" y="-100%" width="300%" height="300%">
+      <feGaussianBlur stdDeviation="2"/>
+    </filter>
+  </defs>
+  <rect width="800" height="500" fill="url(#bg)" rx="16"/>
+  <ellipse cx="400" cy="250" rx="220" ry="180" fill="url(#glow)" opacity="0.4"/>
+  <!-- Row 1 -->
+  <g transform="translate(80,100)">
+    <rect x="0" y="0" width="140" height="120" rx="12" fill="#706457" fill-opacity="0.2" stroke="#C5BAAE" stroke-width="0.5" opacity="0.6" filter="url(#sh)"/>
+    <rect x="0" y="0" width="140" height="120" rx="12" fill="none" stroke="#8A7A6A" stroke-width="1" opacity="0.3"/>
+    <g transform="translate(70,42)">
+      <rect x="-20" y="-18" width="40" height="36" rx="4" fill="none" stroke="#E7E5D0" stroke-width="1.5" opacity="0.6"/>
+      <line x1="-15" y1="-15" x2="-10" y2="-15" stroke="#9BD301" stroke-width="2" opacity="0.8" stroke-linecap="round"/>
+      <line x1="-15" y1="-15" x2="-15" y2="-10" stroke="#9BD301" stroke-width="2" opacity="0.8" stroke-linecap="round"/>
+      <line x1="10" y1="15" x2="15" y2="15" stroke="#9BD301" stroke-width="2" opacity="0.8" stroke-linecap="round"/>
+      <line x1="15" y1="10" x2="15" y2="15" stroke="#9BD301" stroke-width="2" opacity="0.8" stroke-linecap="round"/>
+    </g>
+    <text x="70" y="100" fill="#E7E5D0" font-family="Plus Jakarta Sans, sans-serif" font-size="11" font-weight="600" text-anchor="middle" opacity="0.85">Resize</text>
+  </g>
+  <g transform="translate(250,100)">
+    <rect x="0" y="0" width="140" height="120" rx="12" fill="#706457" fill-opacity="0.2" stroke="#C5BAAE" stroke-width="0.5" opacity="0.6" filter="url(#sh)"/>
+    <rect x="0" y="0" width="140" height="120" rx="12" fill="none" stroke="#8A7A6A" stroke-width="1" opacity="0.3"/>
+    <g transform="translate(70,42)">
+      <line x1="-10" y1="-10" x2="10" y2="-10" stroke="#E7E5D0" stroke-width="2" opacity="0.5" stroke-linecap="round"/>
+      <circle cx="-10" cy="-10" r="2" fill="#E7E5D0" opacity="0.4"/>
+      <line x1="-10" y1="-2" x2="10" y2="-2" stroke="#E7E5D0" stroke-width="2" opacity="0.5" stroke-linecap="round"/>
+      <circle cx="-10" cy="-2" r="2" fill="#E7E5D0" opacity="0.4"/>
+      <line x1="-10" y1="6" x2="10" y2="6" stroke="#9BD301" stroke-width="2" opacity="0.7" stroke-linecap="round"/>
+      <circle cx="-10" cy="6" r="2" fill="#9BD301" opacity="0.6"/>
+    </g>
+    <text x="70" y="100" fill="#E7E5D0" font-family="Plus Jakarta Sans, sans-serif" font-size="11" font-weight="600" text-anchor="middle" opacity="0.85">Drag</text>
+  </g>
+  <g transform="translate(420,100)">
+    <rect x="0" y="0" width="140" height="120" rx="12" fill="#706457" fill-opacity="0.2" stroke="#C5BAAE" stroke-width="0.5" opacity="0.6" filter="url(#sh)"/>
+    <rect x="0" y="0" width="140" height="120" rx="12" fill="none" stroke="#8A7A6A" stroke-width="1" opacity="0.3"/>
+    <g transform="translate(70,42)">
+      <rect x="-18" y="-14" width="36" height="28" rx="4" fill="none" stroke="#E7E5D0" stroke-width="1.5" opacity="0.6"/>
+      <polyline points="-10,0 -4,-6 2,0" fill="none" stroke="#9BD301" stroke-width="2" opacity="0.8" stroke-linecap="round" stroke-linejoin="round"/>
+      <polyline points="10,0 4,-6 -2,0" fill="none" stroke="#9BD301" stroke-width="2" opacity="0.8" stroke-linecap="round" stroke-linejoin="round"/>
+      <polyline points="-10,0 -4,6 2,0" fill="none" stroke="#B8F030" stroke-width="2" opacity="0.6" stroke-linecap="round" stroke-linejoin="round"/>
+      <polyline points="10,0 4,6 -2,0" fill="none" stroke="#B8F030" stroke-width="2" opacity="0.6" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+    <text x="70" y="100" fill="#E7E5D0" font-family="Plus Jakarta Sans, sans-serif" font-size="11" font-weight="600" text-anchor="middle" opacity="0.85">Compress</text>
+  </g>
+  <g transform="translate(590,100)">
+    <rect x="0" y="0" width="140" height="120" rx="12" fill="#706457" fill-opacity="0.2" stroke="#C5BAAE" stroke-width="0.5" opacity="0.6" filter="url(#sh)"/>
+    <rect x="0" y="0" width="140" height="120" rx="12" fill="none" stroke="#8A7A6A" stroke-width="1" opacity="0.3"/>
+    <g transform="translate(70,42)">
+      <rect x="-16" y="-10" width="32" height="20" rx="3" fill="none" stroke="#E7E5D0" stroke-width="1.5" opacity="0.6"/>
+      <rect x="-12" y="-6" width="5" height="12" rx="1" fill="#9BD301" opacity="0.45"/>
+      <rect x="-5" y="-6" width="7" height="12" rx="1" fill="#9BD301" opacity="0.6"/>
+      <rect x="4" y="-6" width="9" height="12" rx="1" fill="#B8F030" opacity="0.8"/>
+    </g>
+    <text x="70" y="100" fill="#E7E5D0" font-family="Plus Jakarta Sans, sans-serif" font-size="11" font-weight="600" text-anchor="middle" opacity="0.85">Bitdepth</text>
+  </g>
+  <!-- Row 2 -->
+  <g transform="translate(80,260)">
+    <rect x="0" y="0" width="140" height="120" rx="12" fill="#706457" fill-opacity="0.2" stroke="#C5BAAE" stroke-width="0.5" opacity="0.6" filter="url(#sh)"/>
+    <rect x="0" y="0" width="140" height="120" rx="12" fill="none" stroke="#8A7A6A" stroke-width="1" opacity="0.3"/>
+    <g transform="translate(70,42)">
+      <rect x="-18" y="-12" width="36" height="24" rx="4" fill="none" stroke="#E7E5D0" stroke-width="1.5" opacity="0.6"/>
+      <line x1="-7" y1="-12" x2="-7" y2="12" stroke="#9BD301" stroke-width="1.5" opacity="0.7" stroke-dasharray="4 3"/>
+      <line x1="7" y1="-12" x2="7" y2="12" stroke="#9BD301" stroke-width="1.5" opacity="0.7" stroke-dasharray="4 3"/>
+      <polyline points="-12,0 -7,-4 -2,0" fill="none" stroke="#B8F030" stroke-width="1.5" opacity="0.6" stroke-linecap="round" stroke-linejoin="round"/>
+      <polyline points="12,0 7,-4 2,0" fill="none" stroke="#B8F030" stroke-width="1.5" opacity="0.6" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+    <text x="70" y="100" fill="#E7E5D0" font-family="Plus Jakarta Sans, sans-serif" font-size="11" font-weight="600" text-anchor="middle" opacity="0.85">Scissors</text>
+  </g>
+  <g transform="translate(250,260)">
+    <rect x="0" y="0" width="140" height="120" rx="12" fill="#706457" fill-opacity="0.2" stroke="#C5BAAE" stroke-width="0.5" opacity="0.6" filter="url(#sh)"/>
+    <rect x="0" y="0" width="140" height="120" rx="12" fill="none" stroke="#8A7A6A" stroke-width="1" opacity="0.3"/>
+    <g transform="translate(70,40)">
+      <rect x="-28" y="-14" width="56" height="20" rx="4" fill="#3D3528" fill-opacity="0.5" stroke="#9A9182" stroke-width="0.5" opacity="0.5"/>
+      <text x="-22" y="0" fill="#E7E5D0" font-family="JetBrains Mono, monospace" font-size="9" opacity="0.6">IMG_0042</text>
+      <polyline points="0,12 0,24" stroke="#9BD301" stroke-width="2" opacity="0.8" stroke-linecap="round"/>
+      <polygon points="-4,20 0,27 4,20" fill="#9BD301" opacity="0.8"/>
+      <rect x="-28" y="28" width="56" height="20" rx="4" fill="#3D3528" fill-opacity="0.5" stroke="#B8F030" stroke-width="0.5" opacity="0.6"/>
+      <text x="-22" y="42" fill="#B8F030" font-family="JetBrains Mono, monospace" font-size="9" opacity="0.8">Tokyo_01</text>
+    </g>
+    <text x="70" y="100" fill="#E7E5D0" font-family="Plus Jakarta Sans, sans-serif" font-size="11" font-weight="600" text-anchor="middle" opacity="0.85">Renamer</text>
+  </g>
+  <g transform="translate(420,260)">
+    <rect x="0" y="0" width="140" height="120" rx="12" fill="#706457" fill-opacity="0.2" stroke="#C5BAAE" stroke-width="0.5" opacity="0.6" filter="url(#sh)"/>
+    <rect x="0" y="0" width="140" height="120" rx="12" fill="none" stroke="#8A7A6A" stroke-width="1" opacity="0.3"/>
+    <g transform="translate(70,42)">
+      <circle cx="-12" cy="-6" r="5" fill="#706457" stroke="#9BD301" stroke-width="1.5" opacity="0.9"/>
+      <circle cx="12" cy="-6" r="5" fill="#706457" stroke="#9BD301" stroke-width="1.5" opacity="0.9"/>
+      <circle cx="0" cy="12" r="5" fill="#706457" stroke="#9BD301" stroke-width="1.5" opacity="0.9"/>
+      <line x1="-7" y1="-6" x2="7" y2="-6" stroke="#9BD301" stroke-width="1.5" opacity="0.6"/>
+      <line x1="-9" y1="-2" x2="-4" y2="8" stroke="#9BD301" stroke-width="1.5" opacity="0.6"/>
+      <line x1="9" y1="-2" x2="4" y2="8" stroke="#9BD301" stroke-width="1.5" opacity="0.6"/>
+    </g>
+    <text x="70" y="100" fill="#E7E5D0" font-family="Plus Jakarta Sans, sans-serif" font-size="11" font-weight="600" text-anchor="middle" opacity="0.85">Workflows</text>
+  </g>
+  <g transform="translate(590,260)">
+    <rect x="0" y="0" width="140" height="120" rx="12" fill="#706457" fill-opacity="0.2" stroke="#C5BAAE" stroke-width="0.5" opacity="0.6" filter="url(#sh)"/>
+    <rect x="0" y="0" width="140" height="120" rx="12" fill="none" stroke="#8A7A6A" stroke-width="1" opacity="0.3"/>
+    <g transform="translate(70,42)">
+      <circle cx="0" cy="0" r="9" fill="none" stroke="#E7E5D0" stroke-width="1.5" opacity="0.6"/>
+      <circle cx="0" cy="0" r="4" fill="#9BD301" opacity="0.7"/>
+      <g opacity="0.7">
+        <rect x="-2" y="-13" width="4" height="6" rx="1" fill="#9BD301"/>
+        <rect x="-2" y="7" width="4" height="6" rx="1" fill="#9BD301"/>
+        <rect x="-13" y="-2" width="6" height="4" rx="1" fill="#9BD301"/>
+        <rect x="7" y="-2" width="6" height="4" rx="1" fill="#9BD301"/>
+      </g>
+    </g>
+    <text x="70" y="100" fill="#E7E5D0" font-family="Plus Jakarta Sans, sans-serif" font-size="11" font-weight="600" text-anchor="middle" opacity="0.85">Settings</text>
+  </g>
+</svg>

@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunk_=self.webpackChunk_||[]).push([["1833"],{5513(e){e.exports=JSON.parse('{"title":"Recent posts","items":[{"title":"Welcome to the Pixore Wiki","permalink":"/pixore-wiki/zh-CN/blog/welcome-to-pixore-wiki","unlisted":false,"date":"2024-01-01T00:00:00.000Z"}]}')}}]);
