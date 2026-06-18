@@ -1,0 +1,99 @@
+---
+sidebar_position: 4
+---
+
+# 发布到市场
+
+通过内置市场把你的节点分享给 Pixore 社区。
+
+## 前置条件
+
+1. 节点已在 Pixore 中正常工作
+2. 你有一个 GitHub 仓库存放节点
+3. 在 Windows 上完成测试（理想情况下也覆盖 macOS/Linux）
+
+## 第 1 步：准备节点仓库
+
+仓库结构如下：
+
+```
+pixore-node-watermark/
+├── manifest.json
+├── main.py
+├── icon.png         # 128×128 PNG
+├── README.md        # 市场展示的说明文档
+├── LICENSE
+└── requirements.txt # 如需额外依赖
+```
+
+## 第 2 步：补齐市场元数据
+
+在 `manifest.json` 加上这些字段：
+
+```json
+{
+  "name": "Smart Watermark",
+  "category": "Image/Overlay",
+  "description": "...",
+  "version": "1.0.0",
+  "author": "your-github-username",
+  "tags": ["watermark", "overlay", "branding"],
+  "license": "MIT",
+  "repository": "https://github.com/yourname/pixore-node-watermark",
+  "min_pixore_version": "1.0.0",
+  ...
+}
+```
+
+## 第 3 步：发布 GitHub Release
+
+1. 打 tag：`git tag v1.0.0`
+2. 推 tag：`git push --tags`
+3. 在 GitHub 上基于该 tag 创建 Release
+4. 附上节点目录打包的 `.zip`
+
+## 第 4 步：提交到节点索引
+
+市场从社区维护的索引仓库 [pixore_node](https://github.com/pokipoi/pixore_node) 读取条目。
+
+1. Fork [pixore_node](https://github.com/pokipoi/pixore_node) 仓库
+2. 在 `index.json` 添加你的节点条目：
+
+```json
+{
+  "nodes": [
+    {
+      "id": "smart-watermark",
+      "name": "Smart Watermark",
+      "author": "yourname",
+      "description": "Add adaptive watermarks with position and opacity control",
+      "category": "Image/Overlay",
+      "version": "1.0.0",
+      "repository": "https://github.com/yourname/pixore-node-watermark",
+      "download_url": "https://github.com/yourname/pixore-node-watermark/releases/latest/download/node.zip",
+      "min_pixore_version": "1.0.0",
+      "tags": ["watermark", "overlay"],
+      "license": "MIT"
+    }
+  ]
+}
+```
+
+3. 发起 Pull Request
+4. 合并后，你的节点便会出现在应用内市场中
+
+## 更新节点
+
+1. 在 `manifest.json` 升级版本号
+2. 创建新的 GitHub Release
+3. 通过 PR 更新 `pixore_node` 中 `index.json` 的版本号
+
+用户在市场里看到你的节点旁会出现 **可更新** 标签。
+
+## 最佳实践
+
+- **写好 README** —— 包含截图、使用示例与变更日志
+- **声明依赖** —— 把所有 pip 包列进 `requirements.txt`
+- **发布前测试** —— 在干净的 Pixore 环境验证
+- **遵循语义化版本** —— 参照 [SemVer](https://semver.org/)（`MAJOR.MINOR.PATCH`）
+- **及时响应问题** —— 用户会在你的仓库里反馈 bug 与需求

@@ -1,0 +1,91 @@
+---
+sidebar_position: 5
+---
+
+# 参与贡献
+
+我们非常欢迎你的贡献！无论是反馈 bug、提议新功能，还是提交代码，本指南都能帮你快速上手。
+
+## 行为准则
+
+请所有贡献者遵循社区准则：保持尊重、建设性、开放友好。
+
+## 贡献方式
+
+### 反馈 Bug
+打开一个带 `bug` 标签的 issue，并附上：
+- Pixore 版本与操作系统
+- 复现步骤
+- 期望行为 vs 实际行为
+- 必要时附截图
+- 错误日志（来自 `logs/` 目录）
+
+### 提议新功能
+打开一个带 `enhancement` 标签的 issue，描述：
+- 你想解决的问题
+- 你建议的方案
+- 考虑过的其他思路
+- 其他工具中的相关示例
+
+### 提交代码
+
+1. Fork [仓库](https://github.com/pokipoi/pixore)
+2. 创建特性分支：`git checkout -b feature/my-feature`
+3. 完成你的修改
+4. 跑测试：`python -m pytest test/`
+5. 用清晰的提交信息提交
+6. Push 后向 `main` 发起 Pull Request
+
+### 提交节点
+请参考 **[发布到市场](/docs/node-development/marketplace)** 指南。
+
+### 完善文档
+Wiki 源码位于 [Pixore-wiki](https://github.com/pokipoi/pixore-wiki)。文档 PR 与代码 PR 同等重要。
+
+## 开发环境
+
+```bash
+git clone https://github.com/pokipoi/pixore.git
+cd pixore
+pip install -e ".[dev]"
+pre-commit install
+```
+
+## 项目结构
+
+```
+pixore/
+├── main.py              # 入口
+├── common/              # 公共工具
+├── core/                # 工作流引擎、节点加载器
+├── ui/                  # 所有界面模块
+├── processors/          # 图像处理后端
+├── nodes_library/       # 内置节点
+├── models/              # AI 模型集成
+├── helpers/             # 辅助函数
+├── resource/            # 静态资源、图标、主题
+├── test/                # 测试
+└── utils/               # 杂项工具
+```
+
+## 代码风格
+
+- 遵循 PEP 8
+- 在合理之处使用类型注解
+- 公共函数加文档字符串
+- 方法保持聚焦、简短
+- 新功能必须配套测试
+
+## PR 检查清单
+
+- [ ] 代码符合项目风格
+- [ ] 测试通过（`python -m pytest test/`）
+- [ ] 新功能含测试
+- [ ] 必要时同步更新文档
+- [ ] PR 描述说明了 what 与 why
+- [ ] 没有夹带无关改动
+
+## 寻求帮助
+
+- **讨论区**：[GitHub Discussions](https://github.com/pokipoi/pixore/discussions)
+- **Issues**：[GitHub Issues](https://github.com/pokipoi/pixore/issues)

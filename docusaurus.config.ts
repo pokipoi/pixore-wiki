@@ -40,7 +40,11 @@ const config: Config = {
 
   i18n: {
     defaultLocale: 'en',
-    locales: ['en'],
+    locales: ['en', 'zh-CN'],
+    localeConfigs: {
+      en: { label: 'English', direction: 'ltr', htmlLang: 'en-US' },
+      'zh-CN': { label: '简体中文', direction: 'ltr', htmlLang: 'zh-CN' },
+    },
   },
 
   presets: [
@@ -92,6 +96,10 @@ const config: Config = {
           label: 'Documentation',
         },
         {to: '/blog', label: 'Blog', position: 'left'},
+        {
+          type: 'localeDropdown',
+          position: 'right',
+        },
         {
           href: 'https://github.com/pokipoi/pixore',
           label: 'GitHub',

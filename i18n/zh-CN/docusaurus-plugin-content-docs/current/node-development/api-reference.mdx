@@ -1,0 +1,165 @@
+---
+sidebar_position: 3
+---
+
+# 节点 API 参考
+
+节点开发者可用的内置工具和辅助函数参考。
+
+## 图像工具
+
+位于 `common/image_utils.py`：
+
+### `load_image(path) → PIL.Image`
+从磁盘加载图像，自动检测格式。
+```python
+from common.image_utils import load_image
+img = load_image("/path/to/image.png")
+```
+
+### `save_image(image, path, **kwargs) → str`
+按格式相关选项保存图像。
+```python
+save_image(img, "/output/image.jpg", quality=85, optimize=True)
+```
+
+### `get_image_info(image) → dict`
+提取图像元数据。
+```python
+info = get_image_info(img)
+# {"width": 1920, "height": 1080, "mode": "RGBA", "format": "PNG", "file_size": 2457600}
+```
+
+### `trim_transparent(image, threshold=0) → PIL.Image`
+自动裁剪透明边缘。
+```python
+from common.image_utils import trim_transparent
+cropped = trim_transparent(img, threshold=10)
+```
+
+### `resize_image(image, width, height, method="lanczos") → PIL.Image`
+按指定算法缩放。
+```python
+resized = resize_image(img, 512, 512, method="lanczos")
+# 算法可选："lanczos"、"bicubic"、"bilinear"、"nearest"
+```
+
+## 进度上报
+
+通过 `payload` 参数上报进度：
+
+```python
+def process(self, image, ctx=None, payload=None):
+    if payload:
+        payload.update_progress(0.5, "处理中...")
+    # ... 实际工作 ...
+    if payload:
+        payload.update_progress(1.0, "完成")
+    return (image,)
+```
+
+### Payload 方法
+
+| 方法 | 说明 |
+|--------|-------------|
+| `update_progress(ratio, message)` | 更新进度条（0.0 到 1.0） |
+| `log(message, level)` | 写入执行日志（`"info"`、`"warn"`、`"error"`） |
+| `is_cancelled()` | 检查用户是否取消 |
+| `set_result(key, value)` | 把执行结果存进代码视图 |
+
+## 压缩工具
+
+位于 `common/compress.py`：
+
+```python
+from common.compress import compress_png, compress_jpeg
+
+# pngquant 压缩 PNG
+compress_png("input.png", "output.png", quality=(60, 80))
+
+# MozJPEG 压缩 JPEG
+compress_jpeg("input.jpg", "output.jpg", quality=85)
+
+# Guetzli 压缩 JPEG
+compress_jpeg("input.jpg", "output.jpg", quality=95, engine="guetzli")
+```
+
+## 文件工具
+
+位于 `common/file_utils.py`：
+
+```python
+from common.file_utils import collect_files, ensure_dir, get_unique_path
+
+# 收集匹配模式的文件
+files = collect_files("/input/folder", extensions=[".png", ".jpg", ".webp"])
+
+# 确保目录存在
+ensure_dir("/output/folder")
+
+# 获取唯一文件名（避免覆盖）
+path = get_unique_path("/output/image.png")  # → /output/image_1.png
+```
+
+## 批处理模式
+
+处理多文件的节点请遵循这个模式：
+
+```python
+import os
+from common.image_utils import load_image, save_image
+from common.file_utils import collect_files
+
+class BatchProcessorNode:
+    @classmethod
+    def INPUT_TYPES(cls):
+        return {
+            "required": {
+                "folder": ("FOLDER_PATH",),
+                "width": ("INT", {"default": 512, "min": 1, "max": 4096}),
+            },
+        }
+
+    RETURN_TYPES = ("FOLDER_PATH",)
+    RETURN_NAMES = ("output_folder",)
+    FUNCTION = "process"
+    CATEGORY = "Image"
+
+    def process(self, folder, width, ctx=None, payload=None):
+        files = collect_files(folder, extensions=[".png", ".jpg", ".jpeg", ".webp"])
+        output_dir = os.path.join(os.path.dirname(folder), "resized")
+        os.makedirs(output_dir, exist_ok=True)
+
+        for i, filepath in enumerate(files):
+            if payload and payload.is_cancelled():
+                break
+
+            ratio = (i + 1) / len(files)
+            if payload:
+                payload.update_progress(ratio, f"处理中 {os.path.basename(filepath)}")
+
+            img = load_image(filepath)
+            h = int(img.height * (width / img.width))
+            resized = img.resize((width, h), Image.LANCZOS)
+            save_image(resized, os.path.join(output_dir, os.path.basename(filepath)))
+
+        return (output_dir,)
+
+
+NODE_CLASS_MAPPINGS = {"batch_resizer": BatchProcessorNode}
+```
+
+## 错误处理
+
+任何输出返回 `None` 表示失败。通过 payload 记录错误：
+
+```python
+def process(self, image, ctx=None, payload=None):
+    try:
+        result = self.risky_operation(image)
+    except Exception as e:
+        if payload:
+            payload.log(f"错误：{e}", "error")
+        return (None,)  # 标记失败
+    return (result,)
+```

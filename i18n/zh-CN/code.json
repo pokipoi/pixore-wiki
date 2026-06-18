@@ -1,0 +1,86 @@
+{
+  "homepage.layout.description": {
+    "message": "Pixore 是一款集成可视化工作流引擎的一站式图像工作站。",
+    "description": "The homepage layout meta description"
+  },
+  "homepage.modules.workflows.title": {
+    "message": "工作流",
+    "description": "Homepage module card title"
+  },
+  "homepage.modules.workflows.description": {
+    "message": "基于节点图的流水线，支持触发器、市场节点和可复用的执行上下文。",
+    "description": "Homepage module card description"
+  },
+  "homepage.modules.resizeCompress.title": {
+    "message": "调整尺寸与压缩",
+    "description": "Homepage module card title"
+  },
+  "homepage.modules.resizeCompress.description": {
+    "message": "基于预设的批量尺寸调整，并结合 MozJPEG、pngquant 与 ImageMagick 编排。",
+    "description": "Homepage module card description"
+  },
+  "homepage.modules.aiRenamer.title": {
+    "message": "AI 重命名",
+    "description": "Homepage module card title"
+  },
+  "homepage.modules.aiRenamer.description": {
+    "message": "基于多模态图像理解的命名能力，支持可重复、确定性的命名策略。",
+    "description": "Homepage module card description"
+  },
+  "homepage.modules.scissorsBitdepth.title": {
+    "message": "裁切与位深",
+    "description": "Homepage module card title"
+  },
+  "homepage.modules.scissorsBitdepth.description": {
+    "message": "画布裁切、批量自动裁切、按通道控制、调色板与抖动预设。",
+    "description": "Homepage module card description"
+  },
+  "homepage.hero.kicker": {
+    "message": "可视化图像工作站",
+    "description": "Homepage hero kicker"
+  },
+  "homepage.hero.title.line1": {
+    "message": "图像流水线，",
+    "description": "Homepage hero title first line"
+  },
+  "homepage.hero.title.accent": {
+    "message": "一次构建。",
+    "description": "Homepage hero title accent"
+  },
+  "homepage.hero.lead": {
+    "message": "Pixore 将专注的图像工具、AI 辅助操作和基于节点的工作流引擎统一到一个平静高效的桌面工作站中。",
+    "description": "Homepage hero lead paragraph"
+  },
+  "homepage.hero.primaryCta": {
+    "message": "开始构建",
+    "description": "Homepage hero primary call-to-action"
+  },
+  "homepage.hero.secondaryCta": {
+    "message": "查看架构",
+    "description": "Homepage hero secondary call-to-action"
+  },
+  "homepage.modules.heading": {
+    "message": "一种工作流语言，多个专注模块。",
+    "description": "Homepage modules section heading"
+  },
+  "homepage.modules.lead": {
+    "message": "用可组合的模型替代零散的单一用途工具，从一次性清理到自动化素材流水线都能自然扩展。",
+    "description": "Homepage modules section lead"
+  },
+  "homepage.cta.heading.primary": {
+    "message": "只需设计一次流水线。",
+    "description": "Homepage CTA heading primary text"
+  },
+  "homepage.cta.heading.muted": {
+    "message": "即可处处运行。",
+    "description": "Homepage CTA heading muted text"
+  },
+  "homepage.cta.primaryButton": {
+    "message": "构建第一个工作流",
+    "description": "Homepage CTA primary button"
+  },
+  "homepage.cta.secondaryButton": {
+    "message": "创建节点",
+    "description": "Homepage CTA secondary button"
+  }
+}

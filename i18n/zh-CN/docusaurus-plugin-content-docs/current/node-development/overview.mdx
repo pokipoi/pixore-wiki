@@ -1,0 +1,154 @@
+---
+sidebar_position: 1
+---
+
+# 节点开发概览
+
+Pixore 的节点系统设计为 **模块化、易扩展**。每个节点都是一个独立的文件夹，无需改动主程序即可投放到 Pixore 中。
+
+## 节点结构
+
+一个节点是包含两个必需文件的目录：
+
+```
+my_node/
+├── manifest.json    # 元数据、输入、输出、UI 描述
+└── main.py          # 处理逻辑
+```
+
+可选文件：
+
+```
+my_node/
+├── manifest.json
+├── main.py
+├── icon.png         # 节点图标（128×128，显示在节点面板上）
+├── README.md        # 市场展示的说明文档
+└── requirements.txt # 额外的 pip 依赖
+```
+
+## 快速示例：灰度节点
+
+**manifest.json**：
+```json
+{
+  "name": "Grayscale",
+  "category": "Image Processing",
+  "description": "Convert image to grayscale",
+  "version": "1.0.0",
+  "author": "YourName",
+  "inputs": {
+    "image": {"type": "IMAGE", "label": "Input Image"}
+  },
+  "outputs": {
+    "image": {"type": "IMAGE", "label": "Grayscale Image"}
+  }
+}
+```
+
+**main.py**：
+```python
+from PIL import Image
+
+class GrayscaleNode:
+    @classmethod
+    def INPUT_TYPES(cls):
+        return {
+            "required": {"image": ("IMAGE",)},
+        }
+
+    RETURN_TYPES = ("IMAGE",)
+    RETURN_NAMES = ("image",)
+    FUNCTION = "process"
+    CATEGORY = "Image"
+
+    def process(self, image, ctx=None, payload=None):
+        return (image.convert("L"),)
+
+
+NODE_CLASS_MAPPINGS = {"grayscale": GrayscaleNode}
+```
+
+## 关键概念
+
+### INPUT_TYPES
+
+定义节点接受什么数据，分两类：
+
+```python
+@classmethod
+def INPUT_TYPES(cls):
+    return {
+        "required": {
+            "image": ("IMAGE",),
+            "width": ("INT", {"default": 512, "min": 1, "max": 4096}),
+        },
+        "optional": {
+            "quality": ("FLOAT", {"default": 80.0, "min": 1.0, "max": 100.0}),
+        }
+    }
+```
+
+### 数据类型
+
+| 类型 | Python 类型 | 说明 |
+|------|------------|-------------|
+| `IMAGE` | `PIL.Image` | Pillow 图像对象 |
+| `STRING` | `str` | 字符串 |
+| `INT` | `int` | 带 min/max 约束的整数 |
+| `FLOAT` | `float` | 带 min/max 约束的浮点数 |
+| `BOOLEAN` | `bool` | 真/假开关 |
+| `FILE_PATH` | `str` | 校验过的文件路径 |
+| `FOLDER_PATH` | `str` | 校验过的文件夹路径 |
+| `IMAGE_BATCH` | `list[PIL.Image]` | 用于批处理的图像列表 |
+| `ANY` | `any` | 任意类型透传 |
+
+### RETURN_TYPES 与 RETURN_NAMES
+
+必须是长度相同的元组：
+
+```python
+RETURN_TYPES = ("IMAGE", "INT")
+RETURN_NAMES = ("processed_image", "file_size")
+```
+
+### 执行上下文
+
+`ctx` 参数是工作流单次运行期间共享的字典：
+
+```python
+def process(self, image, ctx=None, payload=None):
+    # 把中间结果存给下游节点
+    ctx["dominant_color"] = self.extract_color(image)
+    return (image,)
+```
+
+### FUNCTION
+
+要调用的方法名，必须是类上存在的方法。
+
+### CATEGORY
+
+节点在面板中归属的分类。嵌套用 `/`：
+```python
+CATEGORY = "Image/Filters"
+```
+
+### NODE_CLASS_MAPPINGS
+
+把节点 ID 映射到类的字典。键就是节点的唯一标识：
+```python
+NODE_CLASS_MAPPINGS = {
+    "my_custom_grayscale": GrayscaleNode,
+}
+```
+
+## 本地测试
+
+把节点目录放进 `nodes_library/` 后重启 Pixore，它会被自动发现并出现在工作流的节点面板中。
+
+## 下一步
+
+- **[清单规范](/docs/node-development/manifest-spec)** —— 完整 manifest.json 参考
+- **[API 参考](/docs/node-development/api-reference)** —— 可用的工具与辅助函数
+- **[发布到市场](/docs/node-development/marketplace)** —— 把你的节点分享给社区

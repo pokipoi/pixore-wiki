@@ -1,0 +1,94 @@
+---
+sidebar_position: 3
+---
+
+# CLI 集成
+
+Pixore 可以通过命令行驱动，方便接入脚本和 CI/CD。
+
+## 命令行工作流执行器
+
+无需启动图形界面即可运行已保存的工作流：
+
+```bash
+python main.py --run-workflow my_workflow.json --input ./images/ --output ./processed/
+```
+
+### 选项
+
+| 参数 | 说明 |
+|------|-------------|
+| `--run-workflow <path>` | 工作流 `.json` 文件路径 |
+| `--input <path>` | 输入文件或目录 |
+| `--output <path>` | 输出目录 |
+| `--ctx <key=value>` | 设置执行上下文值（可重复） |
+
+### 示例
+
+```bash
+# 基础批量缩放
+python main.py --run-workflow resize_512.json --input ./photos/ --output ./thumbnails/
+
+# 携带上下文变量
+python main.py --run-workflow compress.json --input ./assets/ --output ./dist/ \
+  --ctx quality=85 --ctx format=jpg
+
+# 处理单个文件
+python main.py --run-workflow watermark.json --input photo.png --output ./branded/
+```
+
+## 无界面模式
+
+不打开 GUI 窗口运行：
+
+```bash
+python main.py --headless --run-workflow my_workflow.json --input ./images/
+```
+
+适合服务端处理与 CI/CD 流程。
+
+## 退出码
+
+| 码 | 含义 |
+|------|---------|
+| `0` | 全部文件处理成功 |
+| `1` | 一般错误 |
+| `2` | 找不到工作流文件 |
+| `3` | 找不到输入路径 |
+| `4` | 部分失败（部分文件出错） |
+
+## 程序化集成
+
+Pixore 的核心引擎可作为 Python 模块导入：
+
+```python
+from core.workflow_engine import WorkflowEngine
+from core.node_loader import NodeLoader
+
+# 加载可用节点
+loader = NodeLoader()
+nodes = loader.load_all()
+
+# 创建引擎
+engine = WorkflowEngine(nodes)
+
+# 加载并运行工作流
+workflow = engine.load_workflow("my_workflow.json")
+engine.set_input_files(["/path/to/images/"])
+
+for progress in engine.run():
+    print(f"进度：{progress.ratio:.1%} - {progress.message}")
+
+print(f"结果：{engine.get_results()}")
+```
+
+## Shell 集成（Windows）
+
+在 Windows 右键菜单中注册 Pixore，即可右键直接处理：
+
+```powershell
+# 运行一次注册 Shell 扩展
+python main.py --register-shell
+```
+
+注册成功后，右键任意图像文件即可看到 **使用 Pixore 处理**。

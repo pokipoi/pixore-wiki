@@ -1,0 +1,19 @@
+
+> .@0.0.0 start
+> docusaurus start --host 127.0.0.1 --port 3010
+
+
+ ------------------------------------------------------------------------------                                                                                                         Update available 3.10.0 → 3.10.1                                                                                                                To upgrade Docusaurus packages with the latest version, run the                                       following command:                                            `npm i @docusaurus/core@latest @docusaurus/faster@latest                @docusaurus/preset-classic@latest @docusaurus/module-type-aliases@latest                 @docusaurus/tsconfig@latest @docusaurus/types@latest`                                                                                               ------------------------------------------------------------------------------ 
+
+[INFO] Starting the development server...
+[WARNING] The `siteConfig.onBrokenMarkdownLinks` config option is deprecated and will be removed in Docusaurus v4.
+Please migrate and move this option to `siteConfig.markdown.hooks.onBrokenMarkdownLinks` instead.
+[SUCCESS] Docusaurus website is running at: http://127.0.0.1:3010/pixore-wiki/
+[1mclient[39m[22m (Rspack 1.7.11) compiled [1m[32msuccessfully[39m[22m
+[1mclient[39m[22m (Rspack 1.7.11) compiled [1m[32msuccessfully[39m[22m
+[1mclient[39m[22m (Rspack 1.7.11) compiled [1m[32msuccessfully[39m[22m
+[1mclient[39m[22m (Rspack 1.7.11) compiled [1m[32msuccessfully[39m[22m
+persistent cache save failed. read `C:\Users\WorkUser\Desktop\Development\pixore-wiki\node_modules\.cache\rspack\b529af2195f08a25\snapshot_missing\14\3cd4054084cf39b8` failed due to `pack `C:\Users\WorkUser\Desktop\Development\pixore-wiki\node_modules\.cache\rspack\b529af2195f08a25\snapshot_missing\14\3cd4054084cf39b8` is released and deleted`
+[1mclient[39m[22m (Rspack 1.7.11) compiled [1m[32msuccessfully[39m[22m
+Panic occurred at runtime. Please file an issue on GitHub with the backtrace below: https://github.com/web-infra-dev/rspack/issues: panicked at crates\rspack_storage\src\pack\strategy\split\write_scope.rs:107:16:
+should have bucket pack metas
