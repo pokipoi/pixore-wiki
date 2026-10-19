@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xsl" href="atom.xsl"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://pokipoi.github.io/pixore-wiki/zh-CN/blog</id>
+    <title>Pixore Blog</title>
+    <updated>2024-01-01T00:00:00.000Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <link rel="alternate" href="https://pokipoi.github.io/pixore-wiki/zh-CN/blog"/>
+    <subtitle>Pixore Blog</subtitle>
+    <icon>https://pokipoi.github.io/pixore-wiki/zh-CN/img/favicon.ico</icon>
+    <entry>
+        <title type="html"><![CDATA[Welcome to the Pixore Wiki]]></title>
+        <id>https://pokipoi.github.io/pixore-wiki/zh-CN/blog/welcome-to-pixore-wiki</id>
+        <link href="https://pokipoi.github.io/pixore-wiki/zh-CN/blog/welcome-to-pixore-wiki"/>
+        <updated>2024-01-01T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[We're excited to launch the Pixore documentation wiki! This is your one-stop resource for everything Pixore — from getting started to building custom nodes.]]></summary>
+        <content type="html"><![CDATA[<p>We're excited to launch the Pixore documentation wiki! This is your one-stop resource for everything Pixore — from getting started to building custom nodes.</p>
+<!-- -->
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="whats-inside">What's Inside<a href="https://pokipoi.github.io/pixore-wiki/zh-CN/blog/welcome-to-pixore-wiki#whats-inside" class="hash-link" aria-label="What's Inside的直接链接" title="What's Inside的直接链接" translate="no">​</a></h2>
+<ul>
+<li class=""><strong>Getting Started</strong> — Installation and your first workflow</li>
+<li class=""><strong>Module Guides</strong> — Deep dives into all eight modules</li>
+<li class=""><strong>Node Development</strong> — Build and publish your own nodes</li>
+<li class=""><strong>Advanced Guides</strong> — Triggers, GPU acceleration, and CLI</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="stay-tuned">Stay Tuned<a href="https://pokipoi.github.io/pixore-wiki/zh-CN/blog/welcome-to-pixore-wiki#stay-tuned" class="hash-link" aria-label="Stay Tuned的直接链接" title="Stay Tuned的直接链接" translate="no">​</a></h2>
+<p>We'll be posting tutorials, release notes, and community highlights here. Subscribe to the RSS feed to stay updated!</p>]]></content>
+        <author>
+            <name>Pixore Team</name>
+            <uri>https://github.com/pokipoi</uri>
+        </author>
+        <category label="Release" term="Release"/>
+    </entry>
+</feed>

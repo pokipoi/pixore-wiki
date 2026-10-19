@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#1A1714"/><stop offset="100%" stop-color="#0E0C08"/></linearGradient>
+    <linearGradient id="node1" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#706457"/><stop offset="100%" stop-color="#5C5245"/></linearGradient>
+    <linearGradient id="node2" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#857A6C"/><stop offset="100%" stop-color="#706457"/></linearGradient>
+    <linearGradient id="node3" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#9A9182"/><stop offset="100%" stop-color="#857A6C"/></linearGradient>
+    <linearGradient id="node4" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#5C5245"/><stop offset="100%" stop-color="#4E453A"/></linearGradient>
+    <linearGradient id="edge" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#9BD301"/><stop offset="100%" stop-color="#B8F030"/></linearGradient>
+    <filter id="nodeShadow"><feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="#000" flood-opacity="0.4"/></filter>
+    <filter id="glow"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <filter id="softGlow"><feGaussianBlur stdDeviation="30"/></filter>
+  </defs>
+  <rect width="800" height="500" fill="url(#bg)" rx="16"/>
+  <!-- grid -->
+  <g opacity="0.06" stroke="#E7E5D0" stroke-width="1">
+    <line x1="0" y1="100" x2="800" y2="100"/><line x1="0" y1="200" x2="800" y2="200"/><line x1="0" y1="300" x2="800" y2="300"/><line x1="0" y1="400" x2="800" y2="400"/>
+    <line x1="200" y1="0" x2="200" y2="500"/><line x1="400" y1="0" x2="400" y2="500"/><line x1="600" y1="0" x2="600" y2="500"/>
+  </g>
+  <!-- ambient glow behind nodes -->
+  <ellipse cx="400" cy="200" rx="300" ry="150" fill="#9BD301" opacity="0.04" filter="url(#softGlow)"/>
+  <!-- edges / connections -->
+  <path d="M180,120 C280,120 320,180 330,200" stroke="url(#edge)" stroke-width="2.5" fill="none" opacity="0.7" stroke-dasharray="6 4"/>
+  <path d="M470,200 C480,180 520,120 620,120" stroke="url(#edge)" stroke-width="2.5" fill="none" opacity="0.7" stroke-dasharray="6 4"/>
+  <path d="M330,200 C330,280 400,320 470,280" stroke="#B8F030" stroke-width="2" fill="none" opacity="0.5"/>
+  <path d="M620,120 C620,220 580,300 470,280" stroke="#9BD301" stroke-width="2" fill="none" opacity="0.5"/>
+  <path d="M180,120 C120,280 300,380 470,280" stroke="#9BD301" stroke-width="1.5" fill="none" opacity="0.3"/>
+  <!-- node 1 - top left -->
+  <g filter="url(#nodeShadow)">
+    <rect x="110" y="80" width="140" height="80" rx="12" fill="url(#node1)"/>
+    <rect x="110" y="80" width="140" height="80" rx="12" fill="none" stroke="#C5BAAE" stroke-width="1" opacity="0.3"/>
+    <rect x="120" y="98" width="40" height="8" rx="4" fill="#E7E5D0" opacity="0.8"/>
+    <rect x="120" y="112" width="70" height="6" rx="3" fill="#9A9182" opacity="0.6"/>
+    <rect x="120" y="124" width="55" height="6" rx="3" fill="#9A9182" opacity="0.4"/>
+    <circle cx="230" cy="100" r="8" fill="none" stroke="#9BD301" stroke-width="1.5" opacity="0.8"/>
+    <circle cx="230" cy="100" r="3" fill="#9BD301" filter="url(#glow)"/>
+  </g>
+  <!-- node 2 - center -->
+  <g filter="url(#nodeShadow)">
+    <rect x="330" y="160" width="140" height="80" rx="12" fill="url(#node2)"/>
+    <rect x="330" y="160" width="140" height="80" rx="12" fill="none" stroke="#C5BAAE" stroke-width="1" opacity="0.3"/>
+    <rect x="340" y="178" width="50" height="8" rx="4" fill="#E7E5D0" opacity="0.8"/>
+    <rect x="340" y="192" width="80" height="6" rx="3" fill="#9A9182" opacity="0.6"/>
+    <rect x="340" y="204" width="45" height="6" rx="3" fill="#9A9182" opacity="0.4"/>
+    <circle cx="450" cy="180" r="8" fill="none" stroke="#9BD301" stroke-width="1.5" opacity="0.8"/>
+    <circle cx="450" cy="180" r="3" fill="#9BD301" filter="url(#glow)"/>
+  </g>
+  <!-- node 3 - top right -->
+  <g filter="url(#nodeShadow)">
+    <rect x="550" y="80" width="140" height="80" rx="12" fill="url(#node3)"/>
+    <rect x="550" y="80" width="140" height="80" rx="12" fill="none" stroke="#C5BAAE" stroke-width="1" opacity="0.3"/>
+    <rect x="560" y="98" width="45" height="8" rx="4" fill="#E7E5D0" opacity="0.8"/>
+    <rect x="560" y="112" width="60" height="6" rx="3" fill="#9A9182" opacity="0.6"/>
+    <rect x="560" y="124" width="50" height="6" rx="3" fill="#9A9182" opacity="0.4"/>
+    <circle cx="670" cy="100" r="8" fill="none" stroke="#9BD301" stroke-width="1.5" opacity="0.8"/>
+    <circle cx="670" cy="100" r="3" fill="#9BD301" filter="url(#glow)"/>
+  </g>
+  <!-- node 4 - bottom -->
+  <g filter="url(#nodeShadow)">
+    <rect x="330" y="280" width="140" height="80" rx="12" fill="url(#node4)"/>
+    <rect x="330" y="280" width="140" height="80" rx="12" fill="none" stroke="#C5BAAE" stroke-width="1" opacity="0.3"/>
+    <rect x="340" y="298" width="55" height="8" rx="4" fill="#E7E5D0" opacity="0.8"/>
+    <rect x="340" y="312" width="70" height="6" rx="3" fill="#9A9182" opacity="0.6"/>
+    <rect x="340" y="324" width="40" height="6" rx="3" fill="#9A9182" opacity="0.4"/>
+    <circle cx="450" cy="300" r="8" fill="none" stroke="#9BD301" stroke-width="1.5" opacity="0.8"/>
+    <circle cx="450" cy="300" r="3" fill="#9BD301" filter="url(#glow)"/>
+  </g>
+  <!-- data flow particles -->
+  <circle r="3" fill="#B8F030" opacity="0.9" filter="url(#glow)"><animateMotion dur="3s" repeatCount="indefinite" path="M180,120 C280,120 320,180 330,200"/></circle>
+  <circle r="2.5" fill="#9BD301" opacity="0.7"><animateMotion dur="2.5s" repeatCount="indefinite" path="M470,200 C480,180 520,120 620,120"/></circle>
+  <circle r="2" fill="#B8F030" opacity="0.6"><animateMotion dur="4s" repeatCount="indefinite" path="M330,200 C330,280 400,320 470,280"/></circle>
+</svg>

@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunk_=self.webpackChunk_||[]).push([["1400"],{8373(e){e.exports=JSON.parse('{"tags":[{"label":"Release","permalink":"/pixore-wiki/zh-CN/blog/tags/release","description":"Pixore release announcements","count":1}]}')}}]);
